@@ -19,4 +19,3 @@ def pegar_gps():
 
 if __name__ == "__main__":
     pegar_gps()
-
