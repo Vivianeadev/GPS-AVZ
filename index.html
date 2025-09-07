@@ -6,10 +6,7 @@
   <title>AVZ PropTech - GPS com Antecipação de Recebíveis</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Scripts do Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -483,6 +480,7 @@
     
     .payment-form {
       margin-top: 20px;
+      display: none;
     }
     
     .card-element {
@@ -497,128 +495,6 @@
     .dashboard {
       display: none;
       width: 100%;
-    }
-    
-    .user-info {
-      background: rgba(30, 30, 30, 0.8);
-      border-radius: 15px;
-      padding: 25px;
-      border: 1px solid var(--gold);
-      margin-bottom: 30px;
-    }
-    
-    .status-badge {
-      display: inline-block;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      margin-left: 15px;
-    }
-    
-    .status-active {
-      background: rgba(76, 175, 80, 0.2);
-      color: var(--green);
-    }
-    
-    .status-pending {
-      background: rgba(255, 193, 7, 0.2);
-      color: #ffc107;
-    }
-    
-    .dashboard-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    
-    .dashboard-card {
-      background: rgba(30, 30, 30, 0.8);
-      border-radius: 15px;
-      padding: 20px;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-    }
-    
-    .dashboard-card h3 {
-      color: var(--gold);
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .dashboard-card h3 i {
-      margin-right: 10px;
-    }
-    
-    .dashboard-value {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--light-gold);
-      margin: 10px 0;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-      p.subtitle {
-        font-size: 1rem;
-        padding: 0 15px;
-      }
-      .how-it-works {
-        flex-direction: column;
-      }
-      nav {
-        gap: 10px;
-      }
-      nav a {
-        font-size: 0.9rem;
-        padding: 6px 10px;
-      }
-      .main-btn {
-        padding: 12px 25px;
-        font-size: 1rem;
-      }
-      .section-title {
-        font-size: 1.5rem;
-      }
-      .hero-section h2 {
-        font-size: 1.6rem;
-      }
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-      .payment-options {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-      .hero-section {
-        padding: 25px 15px;
-      }
-      .hero-section h2 {
-        font-size: 1.4rem;
-      }
-      .step-card, .calculator, .withdrawal-info {
-        padding: 20px 15px;
-      }
-      header {
-        padding: 10px 0;
-      }
-      nav a {
-        font-size: 0.8rem;
-      }
-      body {
-        padding: 15px;
-      }
-      .modal-content {
-        padding: 20px 15px;
-      }
     }
   </style>
 </head>
@@ -642,7 +518,7 @@
       </h2>
       <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 800px; margin-left: auto; margin-right: auto;">
         Use nosso GPS premium e receba antecipação de recebíveis com retorno garantido. 
-        Contribua para projetos sustentáveis e receba benefícios diários.
+        Contribua para projetos sustentáveis và receba benefícios diários.
       </p>
       <a class="main-btn" onclick="showCalculator()">
         <i class="fas fa-calculator"></i> Calcular Antecipação
@@ -677,126 +553,77 @@
         </div>
       </div>
 
+      <div class="divider"></div>
+
+      <h2 class="section-title">Calculadora de Antecipação</h2>
       <div class="calculator" id="calculator">
-        <h2 class="section-title">Calcule sua Antecipação</h2>
-        
         <div class="form-group">
-          <label for="contribution-value">Valor que deseja contribuir:</label>
-          <input type="number" id="contribution-value" placeholder="R$ 0,00" min="100" step="100">
+          <label for="contribution-value">Valor da Contribuição (mínimo R$ 100,00):</label>
+          <input type="number" id="contribution-value" placeholder="Ex: 500.00" min="100">
         </div>
         
         <div class="form-group">
-          <label for="usage-days">Dias de uso previsto por semana:</label>
-          <input type="number" id="usage-days" placeholder="Dias (0-7)" min="0" max="7">
+          <label for="usage-days">Dias de Uso do GPS por Semana (1-7):</label>
+          <input type="number" id="usage-days" placeholder="Ex: 5" min="1" max="7">
         </div>
         
         <button class="calculate-btn" onclick="calculateEarnings()">
-          <i class="fas fa-calculator"></i> Calcular Projeção
+          <i class="fas fa-calculator"></i> Calcular Projeção de Ganhos
         </button>
         
         <div class="result-box" id="result-box" style="display: none;">
-          <h3>Projeção de Rendimentos</h3>
-          
+          <h3>Sua Projeção de Ganhos</h3>
           <div class="info-row">
             <span>Valor Contribuído:</span>
             <span id="contribution-display">R$ 0,00</span>
           </div>
-          
           <div class="info-row">
-            <span>Retorno Mensal:</span>
+            <span>Retorno Mensal Estimado:</span>
             <span id="monthly-return">R$ 0,00</span>
           </div>
-          
           <div class="info-row">
-            <span>Total em 6 meses:</span>
+            <span>Retorno Total Estimado (6 meses):</span>
             <span id="total-return">R$ 0,00</span>
           </div>
-          
           <div class="info-row">
-            <span>Percentual de Retorno:</span>
+            <span>Porcentagem de Retorno:</span>
             <span id="return-percentage">0%</span>
           </div>
           
           <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
+            <span class="progress-text" id="progress-text">0%</span>
           </div>
-          <p>Progresso de Retorno: <span id="progress-text">0%</span></p>
-          
-          <div class="divider"></div>
-          
-          <button class="main-btn" onclick="showTerms()" id="unlock-btn">
-            <i class="fas fa-unlock"></i> Desbloquear GPS Premium
-          </button>
         </div>
       </div>
 
-      <div class="withdrawal-info">
-        <h2 class="section-title">Condições de Resgate</h2>
-        
-        <div class="warning-box">
-          <p><i class="fas fa-exclamation-circle"></i> <strong>Importante:</strong> Caso não utilizar o saldo com o lucro devido, estará disponível para resgate em até 6 meses. Usufruindo do app, terá todos os dias reservado para resgate a partir do saque mínimo de R$ 100,00.</p>
-        </div>
-        
-        <div class="info-grid">
-          <div class="info-card">
-            <h3><i class="fas fa-calendar"></i> Resgate Programado</h3>
-            <p>Seus rendimentos são divididos em 6 parcelas mensais, com datas de resgate definidas.</p>
-          </div>
-          
-          <div class="info-card">
-            <h3><i class="fas fa-wallet"></i> Saque Mínimo</h3>
-            <p>Resgates a partir de R$ 100,00, com processamento em até 3 dias úteis.</p>
-          </div>
-          
-          <div class="info-card">
-            <h3><i class="fas fa-chart-line"></i> Rendimento Diário</h3>
-            <p>Seus ganhos são calculados e acumulados diariamente com base no uso do GPS.</p>
-          </div>
-        </div>
-        
-        <h3 class="section-title">Vantagens Exclusivas</h3>
-        <ul class="benefits-list">
-          <li><i class="fas fa-check"></i> Isenção de taxas para saques acima de R$ 500,00</li>
-          <li><i class="fas fa-check"></i> Rendimento adicional para uso frequente</li>
-          <li><i class="fas fa-check"></i> Suporte prioritário 24/7</li>
-          <li><i class="fas fa-check"></i> Participação em projetos sustentáveis</li>
-          <li><i class="fas fa-check"></i> Bônus por indicação de novos usuários</li>
-        </ul>
-      </div>
+      <div class="divider"></div>
 
+      <h2 class="section-title">Termos de Uso e Desbloqueio</h2>
       <div class="terms-container" id="terms-container" style="display: none;">
-        <h3 class="section-title">Termos de Uso e Contrato</h3>
-        <div class="terms-text">
-          <p>Ao desbloquear o GPS Premium da AVZ PropTech, você concorda com os seguintes termos:</p>
-          <p>1. O valor contribuído será destinado a projetos de mobilidade urbana sustentável.</p>
-          <p>2. Os rendimentos são calculados com base no uso efetivo do aplicativo de GPS.</p>
-          <p>3. O resgate dos valores está condicionado ao atingimento do valor mínimo de R$ 100,00.</p>
-          <p>4. Em caso de não utilização do aplicativo, o valor ficará retido por 6 meses para resgate.</p>
-          <p>5. Os rendimentos são divididos em 6 parcelas mensais com datas específicas de resgate.</p>
-          <p>6. A AVZ PropTech se reserva o direito de alterar as condições mediante comunicação prévia.</p>
-          <p>7. Taxas administrativas podem ser aplicadas para resgates inferiores a R$ 500,00.</p>
-        </div>
-        
-        <div class="divider"></div>
-        
-        <button class="main-btn" onclick="acceptTerms()" id="accept-terms-btn">
-          <i class="fas fa-check-circle"></i> Aceitar Termos e Desbloquear
-        </button>
+        <p class="terms-text">
+          Ao aceitar, você concorda em utilizar o GPS da AVZ PropTech para fins de monitoramento de rotas e contribuição para a otimização logística de projetos sustentáveis. 
+          A antecipação de recebíveis será creditada diariamente com base no uso do aplicativo. 
+          O valor mínimo para resgate é de R$ 100,00. 
+          A AVZ PropTech se reserva o direito de alterar os termos e condições mediante aviso prévio. 
+          Seu uso do aplicativo será monitorado para garantir a conformidade com estes termos. 
+          Qualquer tentativa de fraude ou uso indevido resultará na suspensão da conta e perda dos valores acumulados. 
+          Seus dados pessoais serão tratados conforme nossa política de privacidade. 
+          Ao clicar em 'Aceitar Termos e Desbloquear', você confirma que leu, entendeu e concorda com todos os termos aqui descritos.
+        </p>
       </div>
+      <button class="main-btn" onclick="acceptTerms()" id="accept-terms-btn">
+        <i class="fas fa-check-circle"></i> Aceitar Termos e Desbloquear
+      </button>
 
-      <div class="payment-container" id="payment-container">
-        <h2 class="section-title">Finalizar Aquisição</h2>
-        
+      <div class="divider"></div>
+
+      <h2 class="section-title">Pagamento para Ativação</h2>
+      <div class="payment-container" id="payment-container" style="display: none;">
         <div class="info-row">
-          <span>Produto:</span>
-          <span>GPS Premium AVZ PropTech</span>
-        </div>
-        
-        <div class="info-row">
-          <span>Valor:</span>
+          <span>Valor a Pagar:</span>
           <span id="payment-value">R$ 0,00</span>
         </div>
-        
         <div class="info-row">
           <span>Forma de Pagamento:</span>
           <span id="selected-payment">Selecione uma opção</span>
@@ -868,7 +695,7 @@
           <div class="form-group">
             <label for="card-name">Nome no Cartão:</label>
             <input type="text" id="card-name" placeholder="Como está no cartão">
-          </div>
+            </div>
           
           <div class="form-group">
             <label for="card-cpf">CPF do Titular:</label>
@@ -904,7 +731,7 @@
         <div class="user-info">
           <h3>Olá, <span id="user-name">Usuário</span> <span class="status-badge status-active" id="user-status">Ativo</span></h3>
           <p>Email: <span id="user-email">usuario@email.com</span></p>
-          <p>ID do Cliente: <span id="user-id">000001</span></p>
+          <p>ID do Cliente: <span id="user-id">001</span></p>
         </div>
         
         <div class="dashboard-cards">
@@ -933,7 +760,7 @@
           
           <div style="text-align: center; margin: 30px 0;">
             <a class="main-btn" onclick="accessGPS()">
-              <i class="fas fa-map-marked-alt"></i> Acessar GPS Agora
+              <i class="gpsavz.html"></i> Acessar GPS Agora
             </a>
           </div>
           
@@ -998,7 +825,7 @@
           
           <div class="form-group">
             <label for="register-phone">Telefone:</label>
-            <input type="tel" id="register-phone" placeholder="(11) 99999-9999">
+            <input type="text" id="register-phone" placeholder="(XX) XXXXX-XXXX">
           </div>
           
           <div class="form-group">
@@ -1008,356 +835,453 @@
           
           <div class="form-group">
             <label for="register-confirm">Confirmar Senha:</label>
-            <input type="password" id="register-confirm" placeholder="Digite a senha novamente">
+            <input type="password" id="register-confirm" placeholder="Confirme sua senha">
           </div>
           
           <button class="calculate-btn" onclick="register()">
-            <i class="fas fa-user-plus"></i> Criar Conta
+            <i class="fas fa-user-plus"></i> Cadastrar
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <footer>
-    <p>© 2025 AVZ PropTech. Todos os direitos reservados.</p>
-    <p>Transformando o futuro através da tecnologia e sustentabilidade.</p>
-  </footer>
-
   <script>
-    // Configuração do Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyA7WQiZgCVhr35Zc-hTJAtIT897YhIgUE0",
-      authDomain: "gps-clientes-avz.firebaseapp.com",
-      projectId: "gps-clientes-avz",
-      storageBucket: "gps-clientes-avz.appspot.com",
-      messagingSenderId: "357751876641",
-      appId: "SEU_APP_ID_AQUI" // Substitua pelo seu App ID
-    };
+  // Configuração do servidor local
+  const API_BASE = 'http://localhost:3000/api';
+  let currentUser = null;
+  let token = localStorage.getItem('avz_token');
+  let selectedPaymentMethod = '';
+  let contributionValue = 0;
 
-    // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const auth = firebase.auth();
-    
-    // Variáveis globais
-    let currentUser = null;
-    let selectedPaymentMethod = '';
-    let contributionValue = 0;
-    
-    // Verificar estado de autenticação
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        currentUser = user;
-        document.getElementById('login-link').style.display = 'none';
-        document.getElementById('dashboard-link').style.display = 'inline-block';
-        document.getElementById('logout-link').style.display = 'inline-block';
-        document.getElementById('purchase-btn').style.display = 'inline-block';
-        
-        // Carregar dados do usuário
-        loadUserData(user.uid);
-      } else {
-        currentUser = null;
-        document.getElementById('login-link').style.display = 'inline-block';
-        document.getElementById('dashboard-link').style.display = 'none';
-        document.getElementById('logout-link').style.display = 'none';
-        document.getElementById('purchase-btn').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'none';
-      }
-    });
-    
-    // Funções de autenticação
-    function showAuthModal() {
-      document.getElementById('auth-modal').style.display = 'flex';
+  // Verificar autenticação ao carregar a página
+  document.addEventListener('DOMContentLoaded', function() {
+    if (token) {
+      checkAuth();
     }
-    
-    function closeAuthModal() {
-      document.getElementById('auth-modal').style.display = 'none';
-    }
-    
-    function switchAuthTab(tab) {
-      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.auth-form-content').forEach(c => c.classList.remove('active'));
-      
-      document.querySelector(`.auth-tab:nth-child(${tab === 'login' ? '1' : '2'})`).classList.add('active');
-      document.getElementById(`${tab}-form`).classList.add('active');
-    }
-    
-    function login() {
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
-      
-      if (!email || !password) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-      }
-      
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          closeAuthModal();
-          alert('Login realizado com sucesso!');
-        })
-        .catch((error) => {
-          alert('Erro ao fazer login: ' + error.message);
-        });
-    }
-    
-    function register() {
-      const name = document.getElementById('register-name').value;
-      const email = document.getElementById('register-email').value;
-      const phone = document.getElementById('register-phone').value;
-      const password = document.getElementById('register-password').value;
-      const confirm = document.getElementById('register-confirm').value;
-      
-      if (!name || !email || !phone || !password || !confirm) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-      }
-      
-      if (password !== confirm) {
-        alert('As senhas não coincidem.');
-        return;
-      }
-      
-      auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          
-          // Salvar dados adicionais do usuário
-          return db.collection('users').doc(user.uid).set({
-            name: name,
-            email: email,
-            phone: phone,
-            createdAt: new Date(),
-            status: 'active'
-          });
-        })
-        .then(() => {
-          closeAuthModal();
-          alert('Conta criada com sucesso!');
-        })
-        .catch((error) => {
-          alert('Erro ao criar conta: ' + error.message);
-        });
-    }
-    
-    function logout() {
-      auth.signOut()
-        .then(() => {
-          alert('Logout realizado com sucesso.');
-        })
-        .catch((error) => {
-          alert('Erro ao fazer logout: ' + error.message);
-        });
-    }
-    
-    function loadUserData(uid) {
-      db.collection('users').doc(uid).get()
-        .then((doc) => {
-          if (doc.exists) {
-            const userData = doc.data();
-            document.getElementById('user-name').textContent = userData.name;
-            document.getElementById('user-email').textContent = userData.email;
-            document.getElementById('user-id').textContent = uid.substring(0, 6).toUpperCase();
-            
-            // Verificar se tem assinatura ativa
-            checkUserSubscription(uid);
-          }
-        })
-        .catch((error) => {
-          console.error('Erro ao carregar dados:', error);
-        });
-    }
-    
-    function checkUserSubscription(uid) {
-      db.collection('subscriptions')
-        .where('userId', '==', uid)
-        .where('status', '==', 'active')
-        .get()
-        .then((querySnapshot) => {
-          if (!querySnapshot.empty) {
-            document.getElementById('user-status').textContent = 'Ativo';
-            document.getElementById('user-status').className = 'status-badge status-active';
-            document.getElementById('dashboard').style.display = 'block';
-            document.getElementById('purchase-btn').style.display = 'none';
-            
-            // Carregar dados da assinatura
-            const subscription = querySnapshot.docs[0].data();
-            document.getElementById('available-balance').textContent = formatCurrency(subscription.balance || 0);
-            document.getElementById('total-earnings').textContent = formatCurrency(subscription.totalEarnings || 0);
-            document.getElementById('total-km').textContent = (subscription.totalKm || 0) + ' KM';
-          } else {
-            document.getElementById('user-status').textContent = 'Inativo';
-            document.getElementById('user-status').className = 'status-badge status-pending';
-            document.getElementById('dashboard').style.display = 'none';
-          }
-        })
-        .catch((error) => {
-          console.error('Erro ao verificar assinatura:', error);
-        });
-    }
-    
-    // Funções da calculadora
-    function calculateEarnings() {
-      const contribution = parseFloat(document.getElementById('contribution-value').value);
-      const usageDays = parseInt(document.getElementById('usage-days').value);
-      
-      if (!contribution || contribution < 100 || !usageDays || usageDays < 1 || usageDays > 7) {
-        alert('Por favor, informe um valor mínimo de R$ 100,00 e entre 1-7 dias de uso.');
-        return;
-      }
-      
-      contributionValue = contribution;
-      
-      // Cálculos de projeção
-      const monthlyReturn = contribution * (0.02 + (usageDays * 0.005)); // 2% + 0.5% por dia de uso
-      const totalReturn = monthlyReturn * 6;
-      const returnPercentage = ((totalReturn / contribution) * 100).toFixed(2);
-      
-      // Atualizar a interface
-      document.getElementById('contribution-display').textContent = formatCurrency(contribution);
-      document.getElementById('monthly-return').textContent = formatCurrency(monthlyReturn);
-      document.getElementById('total-return').textContent = formatCurrency(totalReturn);
-      document.getElementById('return-percentage').textContent = `${returnPercentage}%`;
-      document.getElementById('payment-value').textContent = formatCurrency(contribution);
-      
-      // Animar a barra de progresso
-      let progress = 0;
-      const progressBar = document.getElementById('progress-bar');
-      const progressText = document.getElementById('progress-text');
-      const progressInterval = setInterval(() => {
-        progress += 1;
-        progressBar.style.width = `${progress}%`;
-        progressText.textContent = `${progress}%`;
-        
-        if (progress >= returnPercentage) {
-          clearInterval(progressInterval);
+  });
+
+  // Função para verificar autenticação
+  async function checkAuth() {
+    try {
+      const response = await fetch(`${API_BASE}/user`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
         }
-      }, 30);
-      
-      // Mostrar a caixa de resultados
-      document.getElementById('result-box').style.display = 'block';
-    }
-    
-    function showTerms() {
-      if (!currentUser) {
-        alert('Por favor, faça login primeiro.');
-        showAuthModal();
-        return;
-      }
-      
-      document.getElementById('terms-container').style.display = 'block';
-      document.getElementById('terms-container').scrollIntoView({ behavior: 'smooth' });
-    }
-    
-    function acceptTerms() {
-      document.getElementById('accept-terms-btn').disabled = true;
-      document.getElementById('accept-terms-btn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
-      
-      // Simular processamento
-      setTimeout(() => {
-        document.getElementById('terms-container').style.display = 'none';
-        document.getElementById('payment-container').style.display = 'block';
-        document.getElementById('payment-container').scrollIntoView({ behavior: 'smooth' });
-        document.getElementById('accept-terms-btn').disabled = false;
-        document.getElementById('accept-terms-btn').innerHTML = '<i class="fas fa-check-circle"></i> Aceitar Termos e Desbloquear';
-      }, 2000);
-    }
-    
-    function showPayment() {
-      if (!currentUser) {
-        alert('Por favor, faça login primeiro.');
-        showAuthModal();
-        return;
-      }
-      
-      if (contributionValue === 0) {
-        alert('Por favor, calcule primeiro sua antecipação.');
-        showCalculator();
-        return;
-      }
-      
-      document.getElementById('payment-container').style.display = 'block';
-      document.getElementById('payment-container').scrollIntoView({ behavior: 'smooth' });
-    }
-    
-    function selectPayment(method) {
-      selectedPaymentMethod = method;
-      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-      document.querySelectorAll('.payment-form').forEach(form => form.style.display = 'none');
-      
-      event.currentTarget.classList.add('selected');
-      document.getElementById('selected-payment').textContent = 
-        method === 'pix' ? 'PIX' : method === 'credit' ? 'Cartão de Crédito' : 'Boleto';
-      
-      document.getElementById(`${method}-payment`).style.display = 'block';
-    }
-    
-    function simulatePayment(method) {
-      if (!selectedPaymentMethod) {
-        alert('Por favor, selecione uma forma de pagamento.');
-        return;
-      }
-      
-      // Simular processamento de pagamento
-      alert(`Simulando pagamento via ${method.toUpperCase()}...`);
-      
-      // Registrar a transação no Firebase
-      db.collection('transactions').add({
-        userId: currentUser.uid,
-        value: contributionValue,
-        method: method,
-        status: 'completed',
-        date: new Date(),
-        type: 'gps_premium'
-      })
-      .then(() => {
-        // Criar/atualizar assinatura
-        return db.collection('subscriptions').doc(currentUser.uid).set({
-          userId: currentUser.uid,
-          value: contributionValue,
-          status: 'active',
-          activatedAt: new Date(),
-          balance: contributionValue * 0.1, // Saldo inicial de 10%
-          totalEarnings: 0,
-          totalKm: 0
-        }, { merge: true });
-      })
-      .then(() => {
-        alert('Pagamento processado com sucesso! GPS Premium ativado.');
-        document.getElementById('payment-container').style.display = 'none';
-        showDashboard();
-      })
-      .catch((error) => {
-        console.error('Erro ao processar pagamento:', error);
-        alert('Erro ao processar pagamento. Tente novamente.');
       });
+      
+      if (response.ok) {
+        const data = await response.json();
+        currentUser = data.user;
+        updateUI();
+        
+        // Se o usuário está ativo, mostrar dashboard
+        if (currentUser.isActive) {
+          showDashboard();
+        }
+      } else {
+        localStorage.removeItem('avz_token');
+        token = null;
+      }
+    } catch (error) {
+      console.error('Erro ao verificar autenticação:', error);
+    }
+  }
+
+  // Função para atualizar a interface
+function updateUI() {
+  if (currentUser) {
+    document.getElementById('login-link').style.display = 'none';
+    document.getElementById('dashboard-link').style.display = 'inline-block';
+    document.getElementById('logout-link').style.display = 'inline-block';
+    document.getElementById('purchase-btn').style.display = 'inline-block';
+    
+    // Atualizar informações do usuário no dashboard - COM VERIFICAÇÃO DE SEGURANÇA
+    document.getElementById('user-name').textContent = currentUser.name || 'Usuário';
+    document.getElementById('user-email').textContent = currentUser.email || 'N/A';
+    
+    // Garantir que o ID sempre tenha um valor
+    const userId = currentUser.id || currentUser.userId || '000000';
+    document.getElementById('user-id').textContent = userId.toString().padStart(6, '0');
+    
+    // Valores padrão para evitar undefined
+    const balance = currentUser.balance || currentUser.saldo || 0;
+    const totalEarnings = currentUser.total_earnings || currentUser.totalEarnings || 0;
+    const totalKm = currentUser.total_km || currentUser.totalKm || 0;
+    const isActive = currentUser.isActive || currentUser.is_active || false;
+    
+    document.getElementById('available-balance').textContent = `R$ ${balance.toFixed(2)}`;
+    document.getElementById('total-earnings').textContent = `R$ ${totalEarnings.toFixed(2)}`;
+    document.getElementById('total-km').textContent = `${totalKm} KM`;
+    
+    if (isActive) {
+      document.getElementById('user-status').textContent = 'Ativo';
+      document.getElementById('user-status').className = 'status-badge status-active';
+    } else {
+      document.getElementById('user-status').textContent = 'Inativo';
+      document.getElementById('user-status').className = 'status-badge status-inactive';
+    }
+  } else {
+    document.getElementById('login-link').style.display = 'inline-block';
+    document.getElementById('dashboard-link').style.display = 'none';
+    document.getElementById('logout-link').style.display = 'none';
+    document.getElementById('purchase-btn').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'none';
+  }
+}
+
+  // Função para mostrar o modal de autenticação
+  function showAuthModal() {
+    document.getElementById('auth-modal').style.display = 'flex';
+  }
+
+  // Função para fechar o modal de autenticação
+  function closeAuthModal() {
+    document.getElementById('auth-modal').style.display = 'none';
+  }
+
+  // Alternar entre abas de login e registro
+  function switchAuthTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.auth-form-content').forEach(el => el.classList.remove('active'));
+    
+    if (tab === 'login') {
+      document.querySelector('.auth-tab:nth-child(1)').classList.add('active');
+      document.getElementById('login-form').classList.add('active');
+    } else {
+      document.querySelector('.auth-tab:nth-child(2)').classList.add('active');
+      document.getElementById('register-form').classList.add('active');
+    }
+  }
+
+  // Função de login
+  async function login() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    
+    try {
+      const response = await fetch(`${API_BASE}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        token = data.token;
+        localStorage.setItem('avz_token', token);
+        currentUser = data.user;
+        closeAuthModal();
+        updateUI();
+      } else {
+        alert("Erro ao fazer login: " + data.error);
+      }
+    } catch (error) {
+      alert("Erro ao fazer login: " + error.message);
+    }
+  }
+
+  // Função de registro
+  async function register() {
+    const name = document.getElementById('register-name').value;
+    const email = document.getElementById('register-email').value;
+    const phone = document.getElementById('register-phone').value;
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('register-confirm').value;
+    
+    if (password !== confirmPassword) {
+      alert("As senhas não coincidem!");
+      return;
     }
     
-    function showDashboard() {
-      if (!currentUser) {
-        alert('Por favor, faça login primeiro.');
-        showAuthModal();
+    try {
+      const response = await fetch(`${API_BASE}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, phone, password })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        token = data.token;
+        localStorage.setItem('avz_token', token);
+        currentUser = data.user;
+        closeAuthModal();
+        alert("Cadastro realizado com sucesso!");
+        updateUI();
+      } else {
+        alert("Erro ao criar conta: " + data.error);
+      }
+    } catch (error) {
+      alert("Erro ao criar conta: " + error.message);
+    }
+  }
+
+  // Função de logout
+  function logout() {
+    token = null;
+    currentUser = null;
+    localStorage.removeItem('avz_token');
+    alert("Logout realizado com sucesso!");
+    updateUI();
+  }
+
+  // Função para mostrar o dashboard
+  async function showDashboard() {
+    try {
+      const response = await fetch(`${API_BASE}/dashboard`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        currentUser = data.user;
+        
+        // Atualizar informações do dashboard
+        document.getElementById('user-name').textContent = currentUser.name;
+        document.getElementById('user-email').textContent = currentUser.email;
+        document.getElementById('user-id').textContent = currentUser.id.toString().padStart(6, '0');
+        document.getElementById('available-balance').textContent = `R$ ${currentUser.balance.toFixed(2)}`;
+        document.getElementById('total-earnings').textContent = `R$ ${currentUser.total_earnings.toFixed(2)}`;
+        document.getElementById('total-km').textContent = `${currentUser.total_km} KM`;
+        
+        if (currentUser.isActive) {
+          document.getElementById('user-status').textContent = 'Ativo';
+          document.getElementById('user-status').className = 'status-badge status-active';
+        } else {
+          document.getElementById('user-status').textContent = 'Inativo';
+          document.getElementById('user-status').className = 'status-badge status-inactive';
+        }
+        
+        document.getElementById('dashboard').style.display = 'block';
+        window.scrollTo(0, document.getElementById('dashboard').offsetTop);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dashboard:', error);
+    }
+  }
+
+  // Função para calcular ganhos
+  async function calculateEarnings() {
+    const contribution = parseFloat(document.getElementById('contribution-value').value);
+    const usageDays = parseInt(document.getElementById('usage-days').value);
+    
+    if (isNaN(contribution) || contribution < 100) {
+      alert("Por favor, insira um valor de contribuição válido (mínimo R$ 100,00)");
+      return;
+    }
+    
+    if (isNaN(usageDays) || usageDays < 1 || usageDays > 7) {
+      alert("Por favor, insira um número válido de dias de uso (1-7)");
+      return;
+    }
+    
+    contributionValue = contribution;
+    
+    try {
+      const response = await fetch(`${API_BASE}/calculate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ contribution, usageDays })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        // Atualizar a interface
+        document.getElementById('contribution-display').textContent = `R$ ${contribution.toFixed(2)}`;
+        document.getElementById('monthly-return').textContent = `R$ ${data.monthlyReturn}`;
+        document.getElementById('total-return').textContent = `R$ ${data.totalReturn}`;
+        document.getElementById('return-percentage').textContent = `${data.returnPercentage}%`;
+        
+        // Atualizar barra de progresso
+        const progressBar = document.getElementById('progress-bar');
+        const progressValue = Math.min(parseFloat(data.returnPercentage), 100);
+        
+        progressBar.style.width = `${progressValue}%`;
+        document.getElementById('progress-text').textContent = `${progressValue.toFixed(2)}%`;
+        
+        // Mostrar resultados
+        document.getElementById('result-box').style.display = 'block';
+        
+        // Mostrar termos
+        document.getElementById('terms-container').style.display = 'block';
+      } else {
+        alert("Erro ao calcular: " + data.error);
+      }
+    } catch (error) {
+      alert("Erro ao calcular: " + error.message);
+    }
+  }
+
+  // Função para aceitar termos
+  function acceptTerms() {
+    if (contributionValue === 0) {
+      alert("Por favor, calcule primeiro sua antecipação antes de aceitar os termos.");
+      return;
+    }
+    
+    document.getElementById('payment-value').textContent = `R$ ${contributionValue.toFixed(2)}`;
+    document.getElementById('payment-container').style.display = 'block';
+    
+    // Rolar para a seção de pagamento
+    window.scrollTo(0, document.getElementById('payment-container').offsetTop);
+  }
+
+  // Função para selecionar método de pagamento
+  function selectPayment(method) {
+    selectedPaymentMethod = method;
+    
+    // Remover seleção anterior
+    document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+    
+    // Adicionar seleção atual
+    document.querySelector(`.payment-option:nth-child(${method === 'pix' ? 1 : method === 'credit' ? 2 : 3})`).classList.add('selected');
+    
+    // Atualizar texto
+    document.getElementById('selected-payment').textContent = method === 'pix' ? 'PIX' : method === 'credit' ? 'Cartão de Crédito' : 'Boleto Bancário';
+    
+    // Ocultar todos os formulários
+    document.querySelectorAll('.payment-form').forEach(el => el.style.display = 'none');
+    
+    // Mostrar formulário selecionado
+    document.getElementById(`${method}-payment`).style.display = 'block';
+  }
+
+  // Função para simular pagamento
+  async function simulatePayment(method) {
+    if (!currentUser) {
+      alert("Por favor, faça login antes de simular o pagamento.");
+      return;
+    }
+    
+    try {
+      // Primeiro simular o pagamento
+      const paymentResponse = await fetch(`${API_BASE}/simulate-payment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ method })
+      });
+      
+      const paymentData = await paymentResponse.json();
+      
+      if (!paymentResponse.ok) {
+        alert("Erro no pagamento: " + paymentData.error);
         return;
       }
       
-      document.getElementById('dashboard').style.display = 'block';
-      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+      // Ativar a conta
+      const activationResponse = await fetch(`${API_BASE}/activate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ contribution: contributionValue })
+      });
+      
+      const activationData = await activationResponse.json();
+      
+      if (activationResponse.ok) {
+        alert(`Pagamento via ${method.toUpperCase()} simulado com sucesso! Sua conta foi ativada.`);
+        document.getElementById('payment-container').style.display = 'none';
+        
+        // Recarregar dados do usuário
+        currentUser.balance = activationData.balance;
+        currentUser.isActive = true;
+        
+        // Mostrar dashboard
+        showDashboard();
+      } else {
+        alert("Erro ao ativar conta: " + activationData.error);
+      }
+    } catch (error) {
+      alert("Erro ao processar pagamento: " + error.message);
+    }
+  }
+
+  // Função para acessar o GPS
+// Função para acessar o GPS (somente clientes ativos e pagos)
+function accessGPS() {
+  if (!currentUser) {
+    alert("Você precisa estar logado para acessar o GPS.");
+    showAuthModal();
+    return;
+  }
+
+  // Carregar dados do Firestore para checar status atualizado
+  db.collection('users').doc(currentUser.uid).get()
+    .then((doc) => {
+      if (doc.exists) {
+        const userData = doc.data();
+        
+        if (!userData || !userData.isActive) {
+          alert("Seu pagamento ainda não foi confirmado. Ative sua conta para continuar.");
+          return;
+        }
+
+        if (!currentUser.uid) {
+          alert("Seu cadastro não está completo. Finalize o registro.");
+          return;
+        }
+
+        // ✅ Se tudo certo → liberar GPS
+        alert("Acesso liberado! Redirecionando para o GPS Premium...");
+        window.location.href = "gpsavz.html";
+      } else {
+        alert("Usuário não encontrado. Faça login novamente.");
+        logout();
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao verificar status do usuário:", error);
+      alert("Erro ao verificar seus dados. Tente novamente.");
+    });
+}
+
+
+  // Função para mostrar a calculadora
+  function showCalculator() {
+    window.scrollTo(0, document.getElementById('calculator').offsetTop);
+  }
+
+  // Função para mostrar pagamento
+  function showPayment() {
+    if (!currentUser) {
+      alert("Por favor, faça login antes de adquirir o GPS Premium.");
+      showAuthModal();
+      return;
     }
     
-    function accessGPS() {
-      alert('Redirecionando para o GPS Premium...');
-      // Em um cenário real, isso redirecionaria para a página do GPS
-      window.location.href = 'gps.html'; // Esta seria a página separada do GPS
+    window.scrollTo(0, document.getElementById('calculator').offsetTop);
+  }
+
+  // Fechar modal ao clicar fora dele
+  window.onclick = function(event) {
+    const modal = document.getElementById('auth-modal');
+    if (event.target === modal) {
+      closeAuthModal();
     }
-    
-    function showCalculator() {
-      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
-    }
-    
-    function formatCurrency(value) {
-      return 'R$ ' + value.toFixed(2).replace('.', ',');
-    }
+  }
+
   </script>
+
+  <footer>
+    <p>&copy; 2023 AVZ PropTech - Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
