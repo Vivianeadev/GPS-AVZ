@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AVZ PropTech - GPS com Antecipação de Recebíveis (Simulação)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #0a0a0a; --dark-black: #000000;
+      --gold: #d4af37; --light-gold: #f4e4bc;
+      --rose-gold: #e8b4b8; --white: #ffffff;
+      --green: #4caf50; --red: #f44336;
+      --rose-shadow: rgba(232, 180, 184, 0.5);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #000 0%, #111 50%, #000 100%);
+      color: var(--white); 
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+      min-height: 100vh; 
+      padding: 20px;
+    }
+    header { 
+      width: 100%; 
+      padding: 15px 0; 
+      display: flex; 
+      justify-content: center;
+      background: rgba(0,0,0,0.6); 
+      position: sticky; 
+      top: 0; 
+      z-index: 10; 
+    }
+    nav { 
+      display: flex; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      align-items: center;
+    }
+    nav a { 
+      color: var(--white); 
+      text-decoration: none; 
+      font-weight: 500; 
+      transition: 0.3s; 
+      cursor: pointer; 
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    nav a:hover { 
+      color: var(--gold); 
+      background: rgba(212, 175, 55, 0.1);
+      box-shadow: 0 0 10px var(--rose-shadow);
+    }
+    h1 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 2.5rem; 
+      margin: 20px 0;
+      background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      text-align: center;
+    }
+    p.subtitle { 
+      font-size: 1.2rem; 
+      color: rgba(255,255,255,0.8); 
+      margin-bottom: 30px; 
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+    .main-btn { 
+      display: inline-block; 
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black); 
+      font-size: 1.2rem; 
+      font-weight: bold; 
+      padding: 15px 35px;
+      border-radius: 50px; 
+      text-decoration: none; 
+      margin-bottom: 30px; 
+      transition: 0.3s; 
+      cursor: pointer;
+      box-shadow: 0 8px 20px var(--rose-shadow); 
+      text-align: center;
+      border: none;
+    }
+    .main-btn:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 12px 28px var(--rose-shadow), 0 0 15px var(--rose-shadow); 
+    }
+    .main-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .divider { 
+      width: 80%; 
+      max-width: 600px;
+      height: 2px; 
+      margin: 20px auto;
+      background: linear-gradient(90deg, var(--rose-gold), var(--gold), var(--rose-gold));
+      border-radius: 2px; 
+    }
+    footer { 
+      margin-top: 40px; 
+      padding: 15px 0; 
+      font-size: 0.85rem; 
+      color: rgba(255,255,255,0.6); 
+      text-align: center; 
+      width: 100%;
+    }
+
+    /* Conteúdo Principal */
+    .content {
+      text-align: left;
+      max-width: 1000px;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      border: 1px solid var(--gold);
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin: 25px 0 15px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .section-content {
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+    
+    .section-content p {
+      margin-bottom: 15px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    
+    .highlight-box {
+      background: rgba(212, 175, 55, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Como Funciona */
+    .how-it-works {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .step-card {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      text-align: center;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-weight: bold;
+    }
+    
+    .step-title {
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    /* Sistema de Pagamento */
+    .payment-container {
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid var(--gold);
+      margin: 30px 0;
+      text-align: center;
+    }
+    
+    .payment-plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .plan-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      transition: all 0.3s;
+    }
+    
+    .plan-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 5px 15px var(--rose-shadow);
+    }
+    
+    .plan-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    
+    .plan-price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--light-gold);
+      margin: 15px 0;
+    }
+    
+    .plan-duration {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 15px;
+    }
+    
+    .plan-features {
+      list-style: none;
+      margin: 15px 0;
+    }
+    
+    .plan-features li {
+      padding: 5px 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .plan-features li:before {
+      content: "✓ ";
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    /* Calculadora de Retorno */
+    .calculator {
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid var(--gold);
+      margin: 30px 0;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--light-gold);
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #222;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--rose-gold);
+      box-shadow: 0 0 10px var(--rose-shadow);
+    }
+    
+    .calculate-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 15px var(--rose-shadow);
+      margin-bottom: 20px;
+    }
+    
+    .calculate-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--rose-shadow);
+    }
+    
+    .calculate-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .result-box {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      text-align: center;
+    }
+    
+    .result-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--light-gold);
+      margin: 10px 0;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .back-btn:hover {
+      color: var(--light-gold);
+      text-shadow: 0 0 10px var(--rose-shadow);
+    }
+
+    /* Layout Principal */
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* Novos estilos para o GPS real */
+    .gps-real-container {
+      width: 100%;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid var(--gold);
+      margin: 30px 0;
+      position: relative;
+    }
+    
+    .gps-locked-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    
+    .lock-icon {
+      font-size: 4rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    
+    .lock-message {
+      text-align: center;
+      color: var(--white);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    
+    .gps-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    
+    .gps-btn {
+      padding: 12px 25px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .gps-btn.start {
+      background: linear-gradient(135deg, var(--green), #2e7d32);
+      color: white;
+    }
+    
+    .gps-btn.stop {
+      background: linear-gradient(135deg, var(--red), #c62828);
+      color: white;
+    }
+    
+    .gps-btn.destination {
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black);
+    }
+    
+    .gps-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .gps-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+    }
+    
+    .status-indicator {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: var(--red);
+    }
+    
+    .status-indicator.active {
+      background-color: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+    
+    .map-container {
+      height: 400px;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .map-overlay {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid var(--gold);
+      width: 300px;
+    }
+    
+    .destination-form {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 20px;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .form-row .form-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    
+    .location-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .location-btn {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--light-gold);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s;
+    }
+    
+    .location-btn:hover {
+      background: rgba(212, 175, 55, 0.3);
+    }
+    
+    .location-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .stat-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      text-align: center;
+    }
+    
+    .stat-label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    
+    .stat-value {
+      font-weight: bold;
+      color: var(--light-gold);
+      font-size: 1.2rem;
+    }
+    
+    .progress-container {
+      width: 100%;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--rose-gold));
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    
+    .route-info {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 20px;
+    }
+    
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .info-row:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    /* Timer Display */
+    .timer-display {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+      border: 2px solid var(--gold);
+    }
+    
+    .timer-label {
+      color: var(--light-gold);
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    
+    .timer-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--gold);
+      font-family: 'Courier New', monospace;
+    }
+    
+    .timer-expired {
+      color: var(--red);
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.3; }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p.subtitle {
+        font-size: 1rem;
+        padding: 0 15px;
+      }
+      .how-it-works {
+        flex-direction: column;
+      }
+      nav {
+        gap: 10px;
+      }
+      nav a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+      }
+      .main-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .hero-section h2 {
+        font-size: 1.6rem;
+      }
+      .gps-controls {
+        flex-direction: column;
+        align-items: center;
+      }
+      .gps-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .stats-panel {
+        grid-template-columns: 1fr;
+      }
+      .map-container {
+        height: 300px;
+      }
+      .form-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .map-overlay {
+        width: 90%;
+        left: 5%;
+      }
+      .payment-plans {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .hero-section {
+        padding: 25px 15px;
+      }
+      .hero-section h2 {
+        font-size: 1.4rem;
+      }
+      .step-card, .calculator, .gps-real-container {
+        padding: 20px 15px;
+      }
+      header {
+        padding: 10px 0;
+      }
+      nav a {
+        font-size: 0.8rem;
+      }
+      body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a onclick="showSection('sobre')">Institucional</a>
+      <a onclick="showSection('desenvolvedores')">Desenvolvedores</a>
+      <a onclick="showSection('investidores')">Investidores</a>
+      <a style="color: var(--gold);"><i class="fas fa-map-marked-alt"></i> GPS com Antecipação</a>
+      <a onclick="showSection('login')" id="login-link"><i class="fas fa-user"></i> Entrar</a>
+      <a onclick="showSection('dashboard')" id="dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+    
+    <h1>AVZ PropTech</h1>
+    <p class="subtitle">GPS Premium com Antecipação de Recebíveis</p>
+    
+    <div class="hero-section">
+      <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 20px; color: var(--gold);">
+        Navegação Completa com Origem e Destino
+      </h2>
+      <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        Insira seu ponto de partida e destino para calcular a melhor rota e comece a gerar rendimentos com nosso GPS premium.
+      </p>
+      <button class="main-btn" onclick="showDestinationForm()" id="access-btn">
+        <i class="fas fa-route"></i> Definir Rota
+      </button>
+    </div>
+
+    <div class="content">
+      <!-- Sistema de Pagamento (oculto na simulação) -->
+      <div class="payment-container" id="payment-container" style="display: none;">
+        <h2 class="section-title">Escolha seu Plano de Acesso</h2>
+        <p style="text-align: center; margin-bottom: 25px; color: rgba(255,255,255,0.8);">
+          Selecione o tempo de uso que melhor se adequa às suas necessidades
+        </p>
+        
+        <div class="payment-plans">
+          <div class="plan-card">
+            <div class="plan-title">Teste Rápido</div>
+            <div class="plan-price">R$ 5,00</div>
+            <div class="plan-duration">15 minutos de uso</div>
+            <ul class="plan-features">
+              <li>Navegação GPS completa</li>
+              <li>Cálculo de rotas otimizadas</li>
+              <li>Rendimentos por minuto</li>
+            </ul>
+            <button class="main-btn" onclick="processPayment(15, 5.00)">
+              <i class="fas fa-shopping-cart"></i> Adquirir
+            </button>
+          </div>
+          
+          <div class="plan-card">
+            <div class="plan-title">Uso Diário</div>
+            <div class="plan-price">R$ 15,00</div>
+            <div class="plan-duration">1 hora de uso</div>
+            <ul class="plan-features">
+              <li>Navegação GPS completa</li>
+              <li>Cálculo de rotas otimizadas</li>
+              <li>Rendimentos por minuto</li>
+              <li>Suporte prioritário</li>
+            </ul>
+            <button class="main-btn" onclick="processPayment(60, 15.00)">
+              <i class="fas fa-shopping-cart"></i> Adquirir
+            </button>
+          </div>
+          
+          <div class="plan-card">
+            <div class="plan-title">Uso Semanal</div>
+            <div class="plan-price">R$ 45,00</div>
+            <div class="plan-duration">4 horas de uso</div>
+            <ul class="plan-features">
+              <li>Navegação GPS completa</li>
+              <li>Cálculo de rotas otimizadas</li>
+              <li>Rendimentos por minuto</li>
+              <li>Suporte prioritário</li>
+              <li>Relatórios detalhados</li>
+            </ul>
+            <button class="main-btn" onclick="processPayment(240, 45.00)">
+              <i class="fas fa-shopping-cart"></i> Adquirir
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">GPS Premium AVZ</h2>
+      <p class="section-content">
+        Nosso sistema de GPS premium oferece navegação completa com cálculo de rotas otimizadas, enquanto gera rendimentos
+        baseados no seu tempo de uso. Adquira créditos de tempo para começar a usar.
+      </p>
+      
+      <div class="highlight-box">
+        <p><strong>Funcionalidades Premium:</strong> Navegação com voz, rotas otimizadas, tráfego em tempo real,
+        alertas de radar, cálculo de rotas com origem e destino personalizados, e muito mais.</p>
+      </div>
+
+      <div class="gps-real-container" id="gps-container">
+        <!-- Overlay de bloqueio (oculto na simulação) -->
+        <div class="gps-locked-overlay" id="gps-locked" style="display: none;">
+          <i class="fas fa-lock lock-icon"></i>
+          <div class="lock-message">
+            <h3>Acesso Premium Necessário</h3>
+            <p>Adquira créditos de tempo para usar o GPS Premium</p>
+          </div>
+          <button class="main-btn" onclick="showPaymentOptions()">
+            <i class="fas fa-credit-card"></i> Adquirir Acesso
+          </button>
+        </div>
+
+        <!-- Timer de tempo restante -->
+        <div class="timer-display" id="timer-display">
+          <div class="timer-label">Tempo Restante</div>
+          <div class="timer-value" id="timer-value">00:00:00</div>
+        </div>
+        
+        <div class="gps-controls">
+          <button class="gps-btn start" onclick="startNavigation()" id="start-btn">
+            <i class="fas fa-play"></i> Iniciar Navegação
+          </button>
+          <button class="gps-btn stop" onclick="stopNavigation()" id="stop-btn" disabled>
+            <i class="fas fa-stop"></i> Parar Navegação
+          </button>
+          <button class="gps-btn destination" onclick="showDestinationForm()" id="route-btn">
+            <i class="fas fa-map-marker-alt"></i> Alterar Rota
+          </button>
+        </div>
+        
+        <div class="gps-status">
+          <div class="status-indicator" id="status-indicator"></div>
+          <span id="status-text">GPS Premium ativado - Defina uma rota</span>
+        </div>
+        
+        <div class="destination-form" id="destination-form">
+          <h3 style="color: var(--gold); margin-bottom: 15px;">Definir Rota</h3>
+          
+          <div class="location-buttons">
+            <button class="location-btn" onclick="useCurrentLocation('origin')">
+              <i class="fas fa-location-arrow"></i> Usar Minha Localização
+            </button>
+            <button class="location-btn" onclick="clearRoute()">
+              <i class="fas fa-trash"></i> Limpar Rota
+            </button>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="origin-input">Origem (partida):</label>
+              <input type="text" id="origin-input" placeholder="Ex: Av. Paulista, 1000 - São Paulo">
+            </div>
+            
+            <div class="form-group">
+              <label for="destination-input">Destino:</label>
+              <input type="text" id="destination-input" placeholder="Ex: Praça da Sé - São Paulo">
+            </div>
+          </div>
+          
+          <button class="calculate-btn" onclick="calculateRoute()">
+            <i class="fas fa-route"></i> Calcular Rota
+          </button>
+        </div>
+        
+        <div class="map-container">
+          <div id="map">
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column; color: white;">
+              <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--gold); margin-bottom: 15px;"></i>
+              <p>Carregando Google Maps...</p>
+              <p style="font-size: 0.9rem; margin-top: 10px;">Digite origem e destino para calcular a rota</p>
+            </div>
+          </div>
+          
+          <div class="map-overlay">
+            <div class="info-row">
+              <span>Origem:</span>
+              <span id="origin-display">Não definida</span>
+            </div>
+            <div class="info-row">
+              <span>Destino:</span>
+              <span id="destination-display">Não definido</span>
+            </div>
+            <div class="info-row">
+              <span>Distância:</span>
+              <span id="distance-display">-</span>
+            </div>
+            <div class="info-row">
+              <span>Tempo estimado:</span>
+              <span id="duration-display">-</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="route-info" id="route-info" style="display: none;">
+          <h3 style="color: var(--gold); margin-bottom: 15px;">Informações da Rota</h3>
+          <div class="info-row">
+            <span>Distância total:</span>
+            <span id="route-distance">-</span>
+          </div>
+          <div class="info-row">
+            <span>Tempo estimado:</span>
+            <span id="route-duration">-</span>
+          </div>
+          <div class="info-row">
+            <span>Rendimento estimado:</span>
+            <span id="route-earnings">R$ 0,00</span>
+          </div>
+        </div>
+        
+        <div class="stats-panel">
+          <div class="stat-card">
+            <div class="stat-label">Tempo de Navegação</div>
+            <div class="stat-value" id="navigation-time">00:00:00</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-label">Distância Percorrida</div>
+            <div class="stat-value" id="distance-traveled">0 km</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-label">Rendimento Gerado</div>
+            <div class="stat-value" id="earnings-generated">R$ 0,00</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-label">Velocidade Atual</div>
+            <div class="stat-value" id="current-speed">0 km/h</div>
+          </div>
+        </div>
+        
+        <div class="progress-container">
+          <div class="progress-bar" id="usage-progress"></div>
+        </div>
+        <p style="text-align: center;">Progresso de Uso: <span id="progress-text">0%</span></p>
+        
+        <div class="result-box">
+          <h3>Projeção de Rendimentos</h3>
+          <p>Com base no seu uso atual, você pode gerar até <span class="result-value">R$ 325,00</span> em 6 meses</p>
+          <p>Isso equivale a <span class="result-value">18%</span> de retorno sobre seu investimento</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Como Funciona o GPS com Rendimentos</h2>
+      <div class="how-it-works">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-title">Acesso Liberado</div>
+          <p>O acesso ao GPS Premium está liberado para simulação.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-title">Defina Origem e Destino</div>
+          <p>Informe de onde você vai sair e para onde quer ir.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-title">Inicie a Navegação</div>
+          <p>Comece a navegar e acompanhe as instruções de rota.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-title">Gere Rendimentos</div>
+          <p>Cada minuto de navegação gera rendimentos para você.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 AVZ PropTech. Todos os direitos reservados.</p>
+    <p>Transformando o futuro através da tecnologia e sustentabilidade.</p>
+  </footer>
+
+  <!-- Google Maps API Script -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7WQiZgCVhr35Zc-hTJAtIT897YhIgUE0&libraries=places&callback=initMap"></script>
+
+  <script>
+    // Variáveis globais para o GPS
+    let gpsActive = false;
+    let gpsInterval = null;
+    let navigationTime = 0;
+    let totalEarnings = 0;
+    let totalDistance = 0;
+    let currentRoute = null;
+    let currentSpeed = 0;
+    let routeCalculated = false;
+    
+    // Variáveis do sistema de pagamento
+    let hasAccess = true; // Acesso concedido automaticamente para simulação
+    let remainingTime = 3600; // 60 minutos de uso para simulação
+    let accessTimer = null;
+    let purchasedMinutes = 60;
+    
+    // Variáveis do Google Maps
+    let map;
+    let directionsService;
+    let directionsRenderer;
+    let geocoder;
+    let originAutocomplete;
+    let destinationAutocomplete;
+
+    // Inicializar Google Maps
+    function initMap() {
+      // Configuração inicial do mapa (São Paulo como centro)
+      const defaultCenter = { lat: -23.5505, lng: -46.6333 };
+      
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: defaultCenter,
+        styles: [
+          {
+            "featureType": "all",
+            "elementType": "geometry.fill",
+            "stylers": [{"color": "#1a1a1a"}]
+          },
+          {
+            "featureType": "all",
+            "elementType": "labels.text.fill",
+            "stylers": [{"color": "#ffffff"}]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [{"color": "#333333"}]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{"color": "#0f0f0f"}]
+          }
+        ]
+      });
+
+      // Inicializar serviços do Google Maps
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        draggable: true,
+        panel: null
+      });
+      directionsRenderer.setMap(map);
+      geocoder = new google.maps.Geocoder();
+
+      // Configurar autocomplete para os campos de entrada
+      const originInput = document.getElementById('origin-input');
+      const destinationInput = document.getElementById('destination-input');
+      
+      if (originInput && destinationInput) {
+        originAutocomplete = new google.maps.places.Autocomplete(originInput);
+        destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+        
+        // Restringir busca ao Brasil
+        const brazilBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(-33.7683777, -73.9872354),
+          new google.maps.LatLng(5.2717863, -28.6341164)
+        );
+        
+        originAutocomplete.setBounds(brazilBounds);
+        destinationAutocomplete.setBounds(brazilBounds);
+      }
+      
+      console.log('Google Maps inicializado com sucesso!');
+    }
+
+    // Sistema de Pagamento (funções mantidas, mas não chamadas diretamente na simulação)
+    function showPaymentOptions() {
+      alert('Nesta versão de simulação, o acesso já está liberado!');
+    }
+
+    function processPayment(minutes, amount) {
+      // Simulação: pagamento já foi processado na inicialização
+    }
+
+    function grantAccess(minutes) {
+      hasAccess = true;
+      remainingTime = minutes * 60; // converter para segundos
+      purchasedMinutes = minutes;
+      
+      // Ocultar overlay de bloqueio
+      document.getElementById('gps-locked').style.display = 'none';
+      
+      // Mostrar timer
+      document.getElementById('timer-display').style.display = 'block';
+      
+      // Habilitar controles
+      enableGPSControls();
+      
+      // Atualizar status
+      document.getElementById('status-text').textContent = 'GPS Premium ativado - Defina uma rota';
+      document.getElementById('origin-display').textContent = 'Não definida';
+      document.getElementById('destination-display').textContent = 'Não definido';
+      
+      // Iniciar timer de acesso
+      startAccessTimer();
+      
+      // Atualizar botão principal
+      document.getElementById('access-btn').innerHTML = '<i class="fas fa-route"></i> Definir Rota';
+      document.getElementById('access-btn').onclick = showDestinationForm;
+      
+      // Recarregar mapa
+      if (map) {
+        google.maps.event.trigger(map, 'resize');
+      }
+    }
+
+    function enableGPSControls() {
+      // Habilitar botões
+      document.getElementById('start-btn').disabled = false;
+      document.getElementById('route-btn').disabled = false;
+      
+      // Habilitar campos de entrada
+      document.getElementById('origin-input').disabled = false;
+      document.getElementById('destination-input').disabled = false;
+      
+      // Habilitar botões de localização
+      document.querySelectorAll('.location-btn').forEach(btn => {
+        btn.disabled = false;
+      });
+      
+      document.querySelector('.calculate-btn').disabled = false;
+    }
+
+    function disableGPSControls() {
+      // Desabilitar todos os controles
+      document.getElementById('start-btn').disabled = true;
+      document.getElementById('stop-btn').disabled = true;
+      document.getElementById('route-btn').disabled = true;
+      
+      document.getElementById('origin-input').disabled = true;
+      document.getElementById('destination-input').disabled = true;
+      
+      document.querySelectorAll('.location-btn').forEach(btn => {
+        btn.disabled = true;
+      });
+      
+      document.querySelector('.calculate-btn').disabled = true;
+    }
+
+    function startAccessTimer() {
+      accessTimer = setInterval(() => {
+        remainingTime--;
+        updateTimerDisplay();
+        
+        if (remainingTime <= 0) {
+          expireAccess();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const hours = Math.floor(remainingTime / 3600);
+      const minutes = Math.floor((remainingTime % 3600) / 60);
+      const seconds = remainingTime % 60;
+      
+      const timerElement = document.getElementById('timer-value');
+      timerElement.textContent = 
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      // Adicionar efeito visual quando restam menos de 5 minutos
+      if (remainingTime <= 300) {
+        timerElement.classList.add('timer-expired');
+      }
+      
+      // Atualizar progresso
+      const usedTime = (purchasedMinutes * 60) - remainingTime;
+      const progress = (usedTime / (purchasedMinutes * 60)) * 100;
+      document.getElementById('usage-progress').style.width = `${progress}%`;
+      document.getElementById('progress-text').textContent = `${progress.toFixed(1)}%`;
+    }
+
+    function expireAccess() {
+      hasAccess = false;
+      clearInterval(accessTimer);
+      
+      // Parar navegação se estiver ativa
+      if (gpsActive) {
+        stopNavigation();
+      }
+      
+      // Mostrar overlay de bloqueio
+      document.getElementById('gps-locked').style.display = 'flex';
+      
+      // Ocultar timer
+      document.getElementById('timer-display').style.display = 'none';
+      
+      // Desabilitar controles
+      disableGPSControls();
+      
+      // Atualizar status
+      document.getElementById('status-text').textContent = 'Tempo esgotado - Adquira mais créditos';
+      
+      // Restaurar botão principal
+      document.getElementById('access-btn').innerHTML = '<i class="fas fa-credit-card"></i> Adquirir Acesso Premium';
+      document.getElementById('access-btn').onclick = showPaymentOptions;
+      
+      alert('Seu tempo de uso expirou! Adquira mais créditos para continuar usando o GPS Premium.');
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      // Conceder acesso automaticamente para simulação
+      grantAccess(purchasedMinutes);
+
+      // Verificar se há uma rota salva (para desenvolvimento/teste)
+      const savedRoute = localStorage.getItem('avz_current_route');
+      if (savedRoute) {
+        const route = JSON.parse(savedRoute);
+        document.getElementById('origin-input').value = route.origin;
+        document.getElementById('destination-input').value = route.destination;
+        document.getElementById('origin-display').textContent = route.origin;
+        document.getElementById('destination-display').textContent = route.destination;
+      }
+    });
+
+    // Usar localização atual
+    function useCurrentLocation(field) {
+      if (!hasAccess) {
+        alert('Acesso Premium necessário para usar esta funcionalidade.');
+        return;
+      }
+      
+      if (!navigator.geolocation) {
+        alert("Geolocalização não é suportada por este navegador.");
+        return;
+      }
+      
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      };
+      
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          
+          // Usar geocoding reverso para obter o endereço
+          geocoder.geocode({
+            location: { lat: lat, lng: lng }
+          }, function(results, status) {
+            if (status === 'OK' && results[0]) {
+              const address = results[0].formatted_address;
+              
+              if (field === 'origin') {
+                document.getElementById('origin-input').value = address;
+                document.getElementById('origin-display').textContent = address;
+              } else {
+                document.getElementById('destination-input').value = address;
+                document.getElementById('destination-display').textContent = address;
+              }
+              
+              alert("Localização definida: " + address);
+            } else {
+              alert("Não foi possível obter o endereço da sua localização.");
+            }
+          });
+        },
+        function(error) {
+          let errorMessage = "Erro desconhecido";
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = "Permissão de localização negada pelo usuário.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = "Informação de localização não disponível.";
+              break;
+            case error.TIMEOUT:
+              errorMessage = "Tempo limite para obter localização excedido.";
+              break;
+          }
+          alert("Não foi possível obter a localização: " + errorMessage);
+        },
+        options
+      );
+    }
+
+    // Calcular rota usando Google Maps
+    function calculateRoute() {
+      if (!hasAccess) {
+        alert('Acesso Premium necessário para calcular rotas.');
+        return;
+      }
+      
+      const origin = document.getElementById('origin-input').value;
+      const destination = document.getElementById('destination-input').value;
+      
+      if (!origin || !destination) {
+        alert('Por favor, preencha origem e destino.');
+        return;
+      }
+      
+      document.getElementById('status-text').textContent = 'Calculando rota...';
+      
+      const request = {
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+      };
+      
+      directionsService.route(request, function(result, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(result);
+          
+          const route = result.routes[0];
+          const leg = route.legs[0];
+          
+          const distance = leg.distance.text;
+          const duration = leg.duration.text;
+          
+          // Calcular rendimentos estimados (R$ 0.10 por minuto)
+          const minutes = Math.round(leg.duration.value / 60);
+          const estimatedEarnings = (minutes * 0.10).toFixed(2);
+          
+          // Atualizar a interface
+          document.getElementById('distance-display').textContent = distance;
+          document.getElementById('duration-display').textContent = duration;
+          document.getElementById('route-distance').textContent = distance;
+          document.getElementById('route-duration').textContent = duration;
+          document.getElementById('route-earnings').textContent = 'R$ ' + estimatedEarnings;
+          
+          document.getElementById('origin-display').textContent = origin;
+          document.getElementById('destination-display').textContent = destination;
+          
+          document.getElementById('route-info').style.display = 'block';
+          document.getElementById('status-text').textContent = 'Rota calculada - Pronto para navegar';
+          document.getElementById('start-btn').disabled = false;
+          
+          routeCalculated = true;
+          
+          // Salvar rota no localStorage
+          localStorage.setItem('avz_current_route', JSON.stringify({
+            origin: origin,
+            destination: destination,
+            distance: distance,
+            duration: duration,
+            earnings: estimatedEarnings
+          }));
+          
+          alert('Rota calculada com sucesso! Distância: ' + distance + ', Tempo: ' + duration);
+        } else {
+          alert('Não foi possível calcular a rota: ' + status);
+          document.getElementById('status-text').textContent = 'Erro ao calcular rota';
+        }
+      });
+    }
+
+    // Iniciar navegação
+    function startNavigation() {
+      if (!hasAccess) {
+        alert('Acesso Premium necessário para iniciar navegação.');
+        return;
+      }
+      
+      if (!routeCalculated) {
+        alert('Por favor, calcule uma rota primeiro.');
+        return;
+      }
+      
+      gpsActive = true;
+      document.getElementById('start-btn').disabled = true;
+      document.getElementById('stop-btn').disabled = false;
+      document.getElementById('status-indicator').classList.add('active');
+      document.getElementById('status-text').textContent = 'Navegação Ativa';
+      
+      // Simular velocidade variável
+      let speedInterval = setInterval(function() {
+        if (!gpsActive) {
+          clearInterval(speedInterval);
+          return;
+        }
+        currentSpeed = Math.floor(Math.random() * 60) + 20; // 20-80 km/h
+        document.getElementById('current-speed').textContent = currentSpeed + ' km/h';
+      }, 3000);
+      
+      // Contador de tempo de navegação
+      gpsInterval = setInterval(function() {
+        navigationTime++;
+        updateNavigationStats();
+      }, 1000);
+    }
+    
+    // Parar navegação
+    function stopNavigation() {
+      if (!gpsActive) return;
+      
+      gpsActive = false;
+      clearInterval(gpsInterval);
+      
+      document.getElementById('start-btn').disabled = false;
+      document.getElementById('stop-btn').disabled = true;
+      document.getElementById('status-indicator').classList.remove('active');
+      document.getElementById('status-text').textContent = 'Navegação Interrompida';
+      document.getElementById('current-speed').textContent = '0 km/h';
+      
+      // Salvar dados da sessão
+      const sessionData = {
+        date: new Date().toISOString(),
+        duration: navigationTime,
+        distance: totalDistance,
+        earnings: totalEarnings
+      };
+      
+      let history = JSON.parse(localStorage.getItem('avz_navigation_history') || '[]');
+      history.push(sessionData);
+      localStorage.setItem('avz_navigation_history', JSON.stringify(history));
+    }
+    
+    // Atualizar estatísticas de navegação
+    function updateNavigationStats() {
+      // Calcular tempo formatado
+      const hours = Math.floor(navigationTime / 3600);
+      const minutes = Math.floor((navigationTime % 3600) / 60);
+      const seconds = navigationTime % 60;
+      
+      document.getElementById('navigation-time').textContent = 
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      // Calcular distância (estimativa: 0.5km por minuto)
+      totalDistance = (navigationTime / 60) * 0.5;
+      document.getElementById('distance-traveled').textContent = `${totalDistance.toFixed(1)} km`;
+      
+      // Calcular rendimentos (R$ 0.10 por minuto como exemplo)
+      totalEarnings = (navigationTime / 60) * 0.10;
+      document.getElementById('earnings-generated').textContent = `R$ ${totalEarnings.toFixed(2)}`;
+    }
+    
+    // Mostrar/ocultar formulário de destino
+    function showDestinationForm() {
+      if (!hasAccess) {
+        alert('Acesso Premium necessário para definir rotas.');
+        return;
+      }
+      
+      const form = document.getElementById('destination-form');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    // Limpar rota atual
+    function clearRoute() {
+      if (!hasAccess) return;
+      
+      document.getElementById('origin-input').value = '';
+      document.getElementById('destination-input').value = '';
+      document.getElementById('origin-display').textContent = 'Não definida';
+      document.getElementById('destination-display').textContent = 'Não definido';
+      document.getElementById('distance-display').textContent = '-';
+      document.getElementById('duration-display').textContent = '-';
+      document.getElementById('route-info').style.display = 'none';
+      document.getElementById('status-text').textContent = 'GPS Premium ativado - Defina uma rota';
+      document.getElementById('start-btn').disabled = true;
+      
+      routeCalculated = false;
+      localStorage.removeItem('avz_current_route');
+      
+      // Limpar direções do mapa
+      if (directionsRenderer) {
+        directionsRenderer.setDirections({routes: []});
+      }
+      
+      if (gpsActive) {
+        stopNavigation();
+      }
+    }
+    
+    // Mostrar/ocultar seções
+    function showSection(sectionId) {
+      alert(`Na versão completa, esta ação levaria você para a seção: ${sectionId}`);
+    }
+  </script>
+</body>
+</html>
+
