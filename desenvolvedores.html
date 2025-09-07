@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AVZ PropTech - Desenvolvedores</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #0a0a0a; --dark-black: #000000;
+      --gold: #d4af37; --light-gold: #f4e4bc;
+      --rose-gold: #e8b4b8; --white: #ffffff;
+      --green: #4caf50; --red: #f44336;
+      --rose-shadow: rgba(232, 180, 184, 0.5);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #000 0%, #111 50%, #000 100%);
+      color: var(--white); 
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+      min-height: 100vh; 
+      padding: 20px;
+    }
+    header { 
+      width: 100%; 
+      padding: 15px 0; 
+      display: flex; 
+      justify-content: center;
+      background: rgba(0,0,0,0.6); 
+      position: sticky; 
+      top: 0; 
+      z-index: 5; 
+    }
+    nav { 
+      display: flex; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      align-items: center;
+    }
+    nav a { 
+      color: var(--white); 
+      text-decoration: none; 
+      font-weight: 500; 
+      transition: 0.3s; 
+      cursor: pointer; 
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    nav a:hover { 
+      color: var(--gold); 
+      background: rgba(212, 175, 55, 0.1);
+      box-shadow: 0 0 10px var(--rose-shadow);
+    }
+    h1 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 2.5rem; 
+      margin: 20px 0;
+      background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      text-align: center;
+    }
+    p.subtitle { 
+      font-size: 1.2rem; 
+      color: rgba(255,255,255,0.8); 
+      margin-bottom: 30px; 
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+    .main-btn { 
+      display: inline-block; 
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black); 
+      font-size: 1.2rem; 
+      font-weight: bold; 
+      padding: 15px 35px;
+      border-radius: 50px; 
+      text-decoration: none; 
+      margin-bottom: 30px; 
+      transition: 0.3s; 
+      cursor: pointer;
+      box-shadow: 0 8px 20px var(--rose-shadow); 
+      text-align: center;
+    }
+    .main-btn:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 12px 28px var(--rose-shadow), 0 0 15px var(--rose-shadow); 
+    }
+    .divider { 
+      width: 80%; 
+      max-width: 600px;
+      height: 2px; 
+      margin: 20px auto;
+      background: linear-gradient(90deg, var(--rose-gold), var(--gold), var(--rose-gold));
+      border-radius: 2px; 
+    }
+    footer { 
+      margin-top: 40px; 
+      padding: 15px 0; 
+      font-size: 0.85rem; 
+      color: rgba(255,255,255,0.6); 
+      text-align: center; 
+      width: 100%;
+    }
+
+    /* Conteúdo Desenvolvedores */
+    .dev-content {
+      text-align: left;
+      max-width: 1000px;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      border: 1px solid var(--gold);
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin: 25px 0 15px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .section-content {
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+    
+    .section-content p {
+      margin-bottom: 15px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    
+    .highlight {
+      color: var(--light-gold);
+      font-weight: 500;
+    }
+
+    /* Grid de Oportunidades */
+    .opportunities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+    
+    .opportunity-card {
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .opportunity-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+    }
+    
+    .card-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .card-description {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .card-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 10px var(--rose-shadow);
+    }
+    
+    .card-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--rose-shadow);
+    }
+
+    /* Processo de Participação */
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .process-step {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      text-align: center;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-weight: bold;
+    }
+    
+    .step-title {
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    /* Benefícios */
+    .benefits-container {
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid var(--gold);
+      margin: 30px 0;
+    }
+    
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+    
+    .benefit-icon {
+      font-size: 1.8rem;
+      color: var(--gold);
+      min-width: 40px;
+    }
+
+    /* Formulário de Contato */
+    .contact-form {
+      background: rgba(30, 30, 30, 0.8);
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid var(--gold);
+      margin: 30px 0;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--light-gold);
+    }
+    
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #222;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--rose-gold);
+      box-shadow: 0 0 10px var(--rose-shadow);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--light-gold));
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 15px var(--rose-shadow);
+    }
+    
+    .form-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--rose-shadow);
+    }
+
+    /* FAQ Section */
+    .faq-container {
+      margin: 30px 0;
+    }
+    
+    .faq-item {
+      margin-bottom: 15px;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .faq-question {
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .faq-answer.open {
+      max-height: 300px;
+      padding: 15px 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .back-btn:hover {
+      color: var(--light-gold);
+      text-shadow: 0 0 10px var(--rose-shadow);
+    }
+
+    /* Layout Principal - Melhorias de Responsividade */
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* Responsividade Aprimorada */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p.subtitle {
+        font-size: 1rem;
+        padding: 0 15px;
+      }
+      .process-steps {
+        flex-direction: column;
+      }
+      
+      .opportunities-grid {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        gap: 10px;
+      }
+      nav a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+      }
+      .main-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .hero-section h2 {
+        font-size: 1.6rem;
+      }
+      .card-title {
+        font-size: 1.2rem;
+      }
+      .benefit-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-form {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .hero-section {
+        padding: 25px 15px;
+      }
+      .hero-section h2 {
+        font-size: 1.4rem;
+      }
+      .opportunity-card, .process-step, .benefits-container, .contact-form {
+        padding: 20px 15px;
+      }
+      header {
+        padding: 10px 0;
+      }
+      nav a {
+        font-size: 0.8rem;
+      }
+      body {
+        padding: 15px;
+      }
+      .card-icon {
+        font-size: 2rem;
+      }
+    }
+
+    /* Melhorias para telas grandes */
+    @media (min-width: 1200px) {
+      h1 {
+        font-size: 3rem;
+      }
+      p.subtitle {
+        font-size: 1.3rem;
+      }
+      .hero-section h2 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a onclick="abrirNaCaixa('sobre.html')">Institucional</a>
+      <a style="color: var(--gold);"><i class="fas fa-code"></i> Desenvolvedores</a>
+      <a onclick="abrirNaCaixa('investidores.html')">Investidores</a>
+      <a onclick="abrirNaCaixa('Quiz_AVZ')">Sustentabilidade</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+    
+    <h1>AVZ PropTech</h1>
+    <p class="subtitle">Desenvolva Soluções com Propósito e Impacto Real</p>
+    
+    <div class="hero-section">
+      <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 20px; color: var(--gold);">
+        Transforme o Futuro da África com Suas Habilidades
+      </h2>
+      <p style="font-size: 1.1rem; margin-bottom: 25px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        Junte-se à revolução da economia verde. Desenvolva aplicativos inovadores e receba tokens AVZ através de contratos de vesting inteligentes. Seu código pode mudar o mundo e gerar impacto real na agricultura sustentável em Angola e em todo continente africano.
+      </p>
+      <a href="#contact" class="main-btn">
+        <i class="fas fa-rocket"></i> Quero Participar Deste Movimento
+      </a>
+    </div>
+
+    <div class="dev-content">
+      <h2 class="section-title">Oportunidades de Desenvolvimento</h2>
+      <p class="section-content">
+        A AVZ PropTech está buscando talentos excepcionais para desenvolver soluções tecnológicas que impulsionem a economia verde e a sustentabilidade em Angola e em todo continente africano. Oferecemos compensação competitiva em tokens AVZ e a oportunidade de fazer a diferença real.
+      </p>
+
+      <div class="opportunities-grid">
+        <div class="opportunity-card">
+          <div class="card-icon">
+            <i class="fas fa-gamepad"></i>
+          </div>
+          <h3 class="card-title">Jogos Educativos</h3>
+          <p class="card-description">
+            Desenvolva jogos que ensinem sustentabilidade, agricultura e consciência ambiental para comunidades africanas.
+          </p>
+          <a href="#contact" class="card-btn">Participar</a>
+        </div>
+
+        <div class="opportunity-card">
+          <div class="card-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="card-title">Apps de Impacto</h3>
+          <p class="card-description">
+            Crie aplicativos que resolvam problemas reais na agricultura, saúde и educação em comunidades africanas.
+          </p>
+          <a href="#contact" class="card-btn">Participar</a>
+        </div>
+
+        <div class="opportunity-card">
+          <div class="card-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="card-title">Soluções Cognitivas</h3>
+          <p class="card-description">
+            Desenvolva aplicativos que estimulem o desenvolvimento cognitivo através de desafios ambientais.
+          </p>
+          <a href="#contact" class="card-btn">Participar</a>
+        </div>
+
+        <div class="opportunity-card">
+          <div class="card-icon">
+            <i class="fas fa-stethoscope"></i>
+          </div>
+          <h3 class="card-title">Saúde Digital</h3>
+          <p class="card-description">
+            Crie soluções de telemedicina e saúde preventiva para comunidades rurais africanas.
+          </p>
+          <a href="#contact" class="card-btn">Participar</a>
+        </div>
+
+        <div class="opportunity-card">
+          <div class="card-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3 class="card-title">Agricultura Sustentável</h3>
+          <p class="card-description">
+            Desenvolva aplicativos que revolucionem a agricultura em Angola e em todo continente africano.
+          </p>
+          <a href="#contact" class="card-btn">Participar</a>
+        </div>
+
+        <div class="opportunity-card">
+          <div class="card-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3 class="card-title">Sua Ideia</h3>
+          <p class="card-description">
+            Tem uma ideia inovadora para sustentabilidade na África? Apresente-nos sua proposta.
+          </p>
+          <a href="#contact" class="card-btn">Participar</a>
+        </div>
+      </div>
+
+      <h2 class="section-title">Como Funciona</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-title">Submeta Sua Proposta</div>
+          <p>Envie sua ideia ou candidate-se a um de nossos projetos existentes.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-title">Avaliação Técnica</div>
+          <p>Nossa equipe avalia o potencial de impacto e viabilidade técnica.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-title">Contrato Inteligente</div>
+          <p>Estabelecemos um contrato com milestones e distribuição de tokens AVZ.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-title">Desenvolvimento</div>
+          <p>Você desenvolve a solução com nosso suporte técnico e mentorias.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">5</div>
+          <div class="step-title">Lançamento & Impacto</div>
+          <p>Sua solução é lançada e começa a gerar impacto real nas comunidades.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Benefícios para Desenvolvedores</h2>
+      <div class="benefits-container">
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-coins"></i>
+          </div>
+          <div>
+            <h3>Remuneração em Tokens AVZ</h3>
+            <p>Receba tokens AVZ com potencial de valorização através de contratos de vesting transparentes.</p>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-globe-africa"></i>
+          </div>
+          <div>
+            <h3>Impacto Real na África</h3>
+            <p>Seu trabalho terá impacto tangível em comunidades africanas, promovendo sustentabilidade e desenvolvimento.</p>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <h3>Suporte Jurídico Completo</h3>
+            <p>Nossa equipe jurídica cuida de todos os aspectos legais, propriedade intelectual e contratos.</p>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div>
+            <h3>Oportunidades de Networking</h3>
+            <p>Conecte-se com investidores, outros desenvolvedores e especialistas em sustentabilidade.</p>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <div>
+            <h3>Reconhecimento Global</h3>
+            <p>Destaque-se no mercado de tecnologia verde com projetos de impacto internacional.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Perguntas Frequentes</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Como são calculados os valores dos tokens AVZ? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>O valor dos tokens AVZ é basedo no sucesso dos aplicativos desenvolvidos e no impacto gerado. Atualmente, o token tem valor projetado entre R$ 0,20 e R$ 2,50, dependendo da adoção e receitas dos aplicativos.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Preciso ter experiência prévia com projetos de sustentabilidade? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Não necessariamente. Valorizamos diversidade de experiências. Oferecemos mentorias e suporte técnico para ajudar no desenvolvimento de soluções alinhadas com nossos objetivos de sustentabilidade.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Como funciona o processo de vesting? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>O vesting é realizado através de contratos inteligentes que liberam tokens AVZ conforme o atingimento de marcos de desenvolvimento estabelecidos em contrato. Isso garante transparência e segurança para ambas as partes.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Posso trabalhar remotamente? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Sim, todos os projetos podem ser desenvolvidos remotamente. Acreditamos no talento global e na capacidade de inovação independente de localização geográfica.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" id="contact">Entre em Contato</h2>
+      <div class="contact-form">
+        <div class="form-group">
+          <label for="name">Nome Completo</label>
+          <input type="text" id="name" placeholder="Seu nome completo">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="project-type">Tipo de Projeto de Interesse</label>
+          <select id="project-type">
+            <option value="">Selecione uma opção</option>
+            <option value="jogos">Jogos Educativos</option>
+            <option value="apps">Apps de Impacto</option>
+            <option value="solucoes">Soluções Cognitivas</option>
+            <option value="saude">Saúde Digital</option>
+            <option value="agricultura">Agricultura Sustentável</option>
+            <option value="outro">Outra Ideia</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Conte-nos sobre suas habilidades e interesse</label>
+          <textarea id="message" placeholder="Descreva sua experiência e por que você está interessado em trabalhar conosco..."></textarea>
+        </div>
+        
+        <button class="form-submit" onclick="submitForm()">
+          <i class="fas fa-paper-plane"></i> Enviar Proposta
+        </button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 AVZ PropTech. Todos os direitos reservados.</p>
+    <p>Transformando o futuro através da tecnologia e sustentabilidade.</p>
+  </footer>
+
+  <script>
+    // FUNÇÃO ABRIR CONTEÚDO NA CAIXA
+    function abrirNaCaixa(url) {
+      // Esta função seria implementada para carregar conteúdo no iframe
+      // Como é uma página separada, redirecionamos para a página principal
+      window.location.href = 'index.html';
+    }
+
+    // Alternar FAQ
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      answer.classList.toggle('open');
+      
+      const icon = element.querySelector('i');
+      if (answer.classList.contains('open')) {
+        icon.className = 'fas fa-chevron-up';
+      } else {
+        icon.className = 'fas fa-chevron-down';
+      }
+    }
+
+    // Enviar formulário
+    function submitForm() {
+      alert('Obrigado pelo seu interesse! Entraremos em contato em breve para discutir suas ideias e habilidades.');
+      // Em uma implementação real, aqui seria o código para enviar os dados do formulário
+    }
+
+    // Inicializar FAQs
+    document.addEventListener('DOMContentLoaded', function() {
+      // Adicionar manipuladores de eventos para FAQs
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          toggleFaq(this);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
