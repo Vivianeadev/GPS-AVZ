@@ -3,7 +3,9 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AVZ PropTech - GPS com Antecipação de Recebíveis</title>
+  <title>AVZ PropTech - GPS Premium</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -16,105 +18,102 @@
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #000 0%, #111 50%, #000 100%);
-      color: var(--white); 
-      display: flex; 
+      color: var(--white);
+      display: flex;
       flex-direction: column;
-      align-items: center; 
-      min-height: 100vh; 
+      align-items: center;
+      min-height: 100vh;
       padding: 20px;
     }
-    header { 
-      width: 100%; 
-      padding: 15px 0; 
-      display: flex; 
+    header {
+      width: 100%;
+      padding: 15px 0;
+      display: flex;
       justify-content: center;
-      background: rgba(0,0,0,0.6); 
-      position: sticky; 
-      top: 0; 
-      z-index: 10; 
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    nav { 
-      display: flex; 
-      gap: 15px; 
-      flex-wrap: wrap; 
-      justify-content: center; 
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
     }
-    nav a { 
-      color: var(--white); 
-      text-decoration: none; 
-      font-weight: 500; 
-      transition: 0.3s; 
-      cursor: pointer; 
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      cursor: pointer;
       padding: 8px 12px;
       border-radius: 6px;
     }
-    nav a:hover { 
-      color: var(--gold); 
+    nav a:hover {
+      color: var(--gold);
       background: rgba(212, 175, 55, 0.1);
       box-shadow: 0 0 10px var(--rose-shadow);
     }
-    h1 { 
-      font-family: 'Playfair Display', serif; 
-      font-size: 2.5rem; 
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
       margin: 20px 0;
       background: linear-gradient(135deg, var(--gold), var(--rose-gold));
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent; 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-align: center;
     }
-    p.subtitle { 
-      font-size: 1.2rem; 
-      color: rgba(255,255,255,0.8); 
-      margin-bottom: 30px; 
+    p.subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 30px;
       text-align: center;
       max-width: 600px;
       line-height: 1.5;
     }
-    .main-btn { 
-      display: inline-block; 
+    .main-btn {
+      display: inline-block;
       background: linear-gradient(135deg, var(--gold), var(--light-gold));
-      color: var(--black); 
-      font-size: 1.2rem; 
-      font-weight: bold; 
+      color: var(--black);
+      font-size: 1.2rem;
+      font-weight: bold;
       padding: 15px 35px;
-      border-radius: 50px; 
-      text-decoration: none; 
-      margin-bottom: 30px; 
-      transition: 0.3s; 
+      border-radius: 50px;
+      text-decoration: none;
+      margin-bottom: 30px;
+      transition: 0.3s;
       cursor: pointer;
-      box-shadow: 0 8px 20px var(--rose-shadow); 
+      box-shadow: 0 8px 20px var(--rose-shadow), 0 0 10px var(--rose-shadow);
       text-align: center;
     }
-    .main-btn:hover { 
-      transform: translateY(-3px); 
-      box-shadow: 0 12px 28px var(--rose-shadow), 0 0 15px var(--rose-shadow); 
+    .main-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px var(--rose-shadow), 0 0 15px var(--rose-shadow);
     }
-    .divider { 
-      width: 80%; 
+    .divider {
+      width: 80%;
       max-width: 600px;
-      height: 2px; 
+      height: 2px;
       margin: 20px auto;
       background: linear-gradient(90deg, var(--rose-gold), var(--gold), var(--rose-gold));
-      border-radius: 2px; 
+      border-radius: 2px;
     }
-    footer { 
-      margin-top: 40px; 
-      padding: 15px 0; 
-      font-size: 0.85rem; 
-      color: rgba(255,255,255,0.6); 
-      text-align: center; 
+    footer {
+      margin-top: 40px;
+      padding: 15px 0;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
       width: 100%;
     }
-
-    /* Conteúdo Principal */
     .content {
       text-align: left;
       max-width: 1000px;
       width: 100%;
       margin: 20px 0;
     }
-
     .hero-section {
       text-align: center;
       padding: 40px 20px;
@@ -124,7 +123,6 @@
       margin-bottom: 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
-
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
@@ -133,17 +131,14 @@
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     }
-    
     .section-content {
       margin-bottom: 25px;
       line-height: 1.6;
     }
-    
     .section-content p {
       margin-bottom: 15px;
       color: rgba(255, 255, 255, 0.85);
     }
-    
     .highlight-box {
       background: rgba(212, 175, 55, 0.1);
       border-left: 4px solid var(--gold);
@@ -151,8 +146,6 @@
       margin: 20px 0;
       border-radius: 0 8px 8px 0;
     }
-
-    /* Como Funciona */
     .how-it-works {
       display: flex;
       flex-wrap: wrap;
@@ -160,7 +153,6 @@
       gap: 20px;
       margin: 30px 0;
     }
-    
     .step-card {
       flex: 1;
       min-width: 250px;
@@ -170,7 +162,6 @@
       border: 1px solid rgba(212, 175, 55, 0.3);
       text-align: center;
     }
-    
     .step-number {
       width: 40px;
       height: 40px;
@@ -183,14 +174,11 @@
       margin: 0 auto 15px;
       font-weight: bold;
     }
-    
     .step-title {
       font-weight: 600;
       color: var(--gold);
       margin-bottom: 10px;
     }
-
-    /* Calculadora de Antecipação */
     .calculator {
       background: rgba(30, 30, 30, 0.8);
       border-radius: 15px;
@@ -198,17 +186,14 @@
       border: 1px solid var(--gold);
       margin: 30px 0;
     }
-    
     .form-group {
       margin-bottom: 20px;
     }
-    
     .form-group label {
       display: block;
       margin-bottom: 8px;
       color: var(--light-gold);
     }
-    
     .form-group input {
       width: 100%;
       padding: 12px 15px;
@@ -219,13 +204,11 @@
       font-size: 1rem;
       transition: all 0.3s;
     }
-    
     .form-group input:focus {
       outline: none;
       border-color: var(--rose-gold);
       box-shadow: 0 0 10px var(--rose-shadow);
     }
-    
     .calculate-btn {
       width: 100%;
       padding: 14px;
@@ -237,15 +220,13 @@
       cursor: pointer;
       transition: all 0.3s;
       font-size: 1.1rem;
-      box-shadow: 0 6px 15px var(--rose-shadow);
+      box-shadow: 0 6px 15px var(--rose-shadow), 0 0 10px var(--rose-shadow);
       margin-bottom: 20px;
     }
-    
     .calculate-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px var(--rose-shadow);
+      box-shadow: 0 10px 25px var(--rose-shadow), 0 0 15px var(--rose-shadow);
     }
-    
     .result-box {
       background: rgba(0, 0, 0, 0.3);
       padding: 20px;
@@ -253,15 +234,12 @@
       border: 1px solid rgba(212, 175, 55, 0.3);
       text-align: center;
     }
-    
     .result-value {
       font-size: 1.5rem;
       font-weight: bold;
       color: var(--light-gold);
       margin: 10px 0;
     }
-
-    /* Termos de Uso */
     .terms-container {
       background: rgba(30, 30, 30, 0.8);
       border-radius: 15px;
@@ -271,14 +249,11 @@
       max-height: 200px;
       overflow-y: auto;
     }
-    
     .terms-text {
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.7);
       line-height: 1.5;
     }
-
-    /* Layout Principal */
     main {
       display: flex;
       flex-direction: column;
@@ -286,8 +261,6 @@
       width: 100%;
       max-width: 1200px;
     }
-
-    /* Informações de Resgate */
     .withdrawal-info {
       background: rgba(30, 30, 30, 0.8);
       border-radius: 15px;
@@ -295,14 +268,12 @@
       border: 1px solid var(--gold);
       margin: 30px 0;
     }
-    
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
-    
     .info-card {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 10px;
@@ -310,12 +281,10 @@
       border: 1px solid rgba(212, 175, 55, 0.3);
       text-align: center;
     }
-    
     .info-card h3 {
       color: var(--gold);
       margin-bottom: 15px;
     }
-    
     .warning-box {
       background: rgba(244, 67, 54, 0.1);
       border-left: 4px solid var(--red);
@@ -323,24 +292,20 @@
       margin: 20px 0;
       border-radius: 0 8px 8px 0;
     }
-    
     .benefits-list {
       list-style-type: none;
       margin: 20px 0;
     }
-    
     .benefits-list li {
       padding: 10px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
     }
-    
     .benefits-list li i {
       color: var(--gold);
       margin-right: 10px;
     }
-    
     .progress-container {
       width: 100%;
       height: 20px;
@@ -349,7 +314,6 @@
       margin: 20px 0;
       overflow: hidden;
     }
-    
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--gold), var(--rose-gold));
@@ -357,7 +321,6 @@
       width: 0%;
       transition: width 0.5s ease;
     }
-    
     .info-row {
       display: flex;
       justify-content: space-between;
@@ -365,14 +328,11 @@
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
     .info-row:last-child {
       margin-bottom: 0;
       padding-bottom: 0;
       border-bottom: none;
     }
-
-    /* Modal de Login/Registro */
     .modal {
       display: none;
       position: fixed;
@@ -385,7 +345,6 @@
       justify-content: center;
       align-items: center;
     }
-    
     .modal-content {
       background: rgba(30, 30, 30, 0.95);
       border-radius: 15px;
@@ -395,7 +354,6 @@
       max-width: 450px;
       position: relative;
     }
-    
     .close-modal {
       position: absolute;
       top: 15px;
@@ -404,45 +362,36 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-    
     .auth-form {
       margin-top: 20px;
     }
-    
     .auth-tabs {
       display: flex;
       margin-bottom: 20px;
       border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     }
-    
     .auth-tab {
       padding: 10px 20px;
       cursor: pointer;
       opacity: 0.7;
       transition: 0.3s;
     }
-    
     .auth-tab.active {
       opacity: 1;
       border-bottom: 2px solid var(--gold);
       color: var(--gold);
     }
-    
     .auth-form-content {
       display: none;
     }
-    
     .auth-form-content.active {
       display: block;
     }
-    
     .form-footer {
       margin-top: 20px;
       text-align: center;
       font-size: 0.9rem;
     }
-
-    /* Pagamento */
     .payment-container {
       background: rgba(30, 30, 30, 0.8);
       border-radius: 15px;
@@ -451,14 +400,12 @@
       margin: 30px 0;
       display: none;
     }
-    
     .payment-options {
       display: flex;
       gap: 15px;
       margin: 20px 0;
       flex-wrap: wrap;
     }
-    
     .payment-option {
       flex: 1;
       min-width: 120px;
@@ -469,17 +416,15 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    
     .payment-option:hover, .payment-option.selected {
       background: rgba(212, 175, 55, 0.1);
       border-color: var(--gold);
+      box-shadow: 0 0 10px var(--rose-shadow);
     }
-    
     .payment-form {
       margin-top: 20px;
       display: none;
     }
-
     .card-element {
       background: #222;
       padding: 12px 15px;
@@ -487,11 +432,122 @@
       border: 1px solid #444;
       margin-bottom: 20px;
     }
-
-    /* Dashboard */
     .dashboard {
       display: none;
       width: 100%;
+    }
+    .projection-box {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    .projection-box strong {
+      color: var(--light-gold);
+    }
+    .map-and-directions-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    #map {
+      flex: 3;
+      height: 60vh;
+      min-width: 300px;
+      border-radius: 10px;
+      border: 1px solid var(--gold);
+    }
+    #directions-panel {
+      flex: 1;
+      min-width: 250px;
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      max-height: 60vh;
+      overflow-y: auto;
+      font-size: 0.9em;
+      line-height: 1.5;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: rgba(255, 255, 255, 0.85);
+    }
+    #directions-panel strong {
+      color: var(--gold);
+      display: block;
+      margin-bottom: 10px;
+    }
+    #directions-panel ol, #directions-panel li {
+      margin: 0;
+      padding: 0;
+      list-style-type: decimal;
+      margin-left: 20px;
+    }
+    #directions-panel li {
+      margin-bottom: 8px;
+    }
+    .gps-section {
+      display: none;
+      width: 100%;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+    .input-row input {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #222;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    .input-row input:focus {
+      outline: none;
+      border-color: var(--rose-gold);
+      box-shadow: 0 0 10px var(--rose-shadow);
+    }
+    .input-row button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: var(--gold);
+      color: var(--black);
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .input-row button:hover {
+      background: var(--light-gold);
+    }
+    @media (max-width: 768px) {
+      .map-and-directions-wrapper {
+        flex-direction: column;
+      }
+      #map, #directions-panel {
+        flex: none;
+        width: 100%;
+        min-width: unset;
+      }
+      #directions-panel {
+        max-height: 30vh;
+      }
+      .input-row {
+        flex-direction: column;
+      }
+      .input-row input, .input-row button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -499,23 +555,61 @@
   <header>
     <nav>
       <a style="color: var(--gold);"><i class="fas fa-map-marked-alt"></i> AVZ PROPTECH</a>
-      <div class="client-info" style="display: none;">Cliente: AVZ400988</div>
-      <a onclick="showAuthModal()" id="login-link"><i class="fas fa-user"></i> Login | Cadastrar </a>
+      <div class="client-info" style="display: none;">Cliente: <span id="client-info-id"></span></div>
+      <a onclick="showAuthModal()" id="login-link"><i class="fas fa-user"></i> Entrar | Cadastrar </a>
       <a onclick="showDashboard()" id="dashboard-link" style="display: none;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
       <a onclick="logout()" id="logout-link" style="display: none;"><i class="fas fa-sign-out-alt"></i> Sair</a>
     </nav>
   </header>
   
   <main>
-    <h1>GPS Premium AVZ</h1>
-    <p class="subtitle">Antecipe seus recebíveis e ganhe dinheiro com a sua rota. Uma plataforma <strong>inovadora</strong> e <strong>segura</strong>.</p>
-
-    <div id="hero-section" class="hero-section" style="display: block;">
+    <div id="gps-section" class="gps-section">
+      <h1>GPS Premium AVZ</h1>
+      <div class="main-container">
+        <div class="info-box">
+          <p>Status do GPS: <strong id="status-text">Iniciando...</strong></p>
+          <p>Rendimentos acumulados: <strong id="earnings-display">R$ 0,00</strong></p>
+        </div>
+        <div class="projection-box">
+          <p>Projeção de Ganhos em tempo real: <strong id="projected-earnings">Aguardando cálculo...</strong></p>
+        </div>
+        <div class="input-group">
+          <div class="input-row">
+            <input type="text" id="origin-input" placeholder="Opcional: Digite sua origem...">
+          </div>
+          <div class="input-row">
+            <input type="text" id="destination-input" placeholder="Digite seu destino...">
+          </div>
+          <div class="input-row">
+            <button onclick="calculateAndDisplayRoute()"><i class="fas fa-route"></i> Traçar Rota</button>
+            <button onclick="toggleMapStyle()"><i class="fas fa-adjust"></i> Estilo de Mapa</button>
+          </div>
+          <div class="input-row" style="display: none;" id="route-controls">
+            <button onclick="startRoute()" id="start-route-btn"><i class="fas fa-play"></i> Iniciar Rota</button>
+            <button onclick="stopRoute()" id="stop-route-btn" style="display: none;"><i class="fas fa-stop"></i> Parar Rota</button>
+          </div>
+        </div>
+        <div class="map-and-directions-wrapper">
+          <div id="map"></div>
+          <div id="directions-panel">
+            <strong>Instruções da Rota:</strong>
+          </div>
+        </div>
+        <div class="info-box">
+          <p>Distância Total: <strong id="distance-display">N/A</strong></p>
+          <p>Tempo Estimado: <strong id="duration-display">N/A</strong></p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="hero-section" class="hero-section">
+      <h1>GPS Premium AVZ</h1>
+      <p class="subtitle">Antecipe seus recebíveis e ganhe dinheiro com a sua rota. Uma plataforma **inovadora** e **segura**.</p>
       <h2>Desbloqueie seu Potencial de Ganhos</h2>
       <p class="section-content">Faça login ou cadastre-se para acessar a calculadora de antecipação e começar a ganhar com o GPS Premium AVZ.</p>
       <a class="main-btn" onclick="showAuthModal()"> Começar Agora <i class="fas fa-arrow-right"></i></a>
     </div>
-
+    
     <div class="user-info-section" style="display: none;">
       <h2 class="section-title">Bem-vindo(a), <span id="user-name">Usuário</span>!</h2>
       <p>ID de Cliente: <strong id="user-id">000000</strong></p>
@@ -523,9 +617,8 @@
         <p><strong>Status:</strong> <span id="user-status">Inativo</span></p>
       </div>
     </div>
-
+    
     <div class="content">
-
       <h2 class="section-title">Como Funciona</h2>
       <div class="how-it-works">
         <div class="step-card">
@@ -535,7 +628,7 @@
         </div>
         <div class="step-card">
           <div class="step-number">2</div>
-          <div class="gpsavz.html">Desbloqueie o GPS</div>
+          <div class="step-title">Desbloqueie o GPS</div>
           <p>Concorde com os termos e desbloqueie o sistema.</p>
         </div>
         <div class="step-card">
@@ -550,8 +643,8 @@
         </div>
       </div>
       <div class="divider"></div>
-
-      <h2 class="section-title">Calculadora de Antecipação</h2>
+      
+      <h2 class="section-title" id="calculator-title" style="display: none;">Calculadora de Antecipação</h2>
       <div class="calculator" id="calculator" style="display: none;">
         <div class="form-group">
           <label for="contribution-value">Valor da Contribuição (mínimo R$ 100,00):</label>
@@ -582,18 +675,25 @@
             <span>Porcentagem de Retorno:</span>
             <span id="return-percentage">18%</span>
           </div>
+          <div class="info-row" style="margin-top: 10px;">
+              <span>**Resgate do Bônus:**</span>
+              <span style="font-weight: bold; color: var(--gold);">6 meses</span>
+          </div>
           <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
             <span class="progress-text" id="progress-text">18%</span>
           </div>
+          <button class="calculate-btn" onclick="continueToTerms()">
+            Continuar para os Termos <i class="fas fa-arrow-right"></i>
+          </button>
         </div>
       </div>
       <div class="divider" id="divider-1" style="display: none;"></div>
-
+      
       <h2 class="section-title" id="terms-title" style="display: none;">Termos de Uso e Desbloqueio</h2>
       <div class="terms-container" id="terms-container" style="display: none;">
         <p class="terms-text">
-          Ao aceitar, você concorda em utilizar o GPS da AVZ PropTech para fins de monitoramento de rotas e contribuição para a otimização logística de projetos sustentáveis. A antecipação de recebíveis será creditada diariamente com base não uso do aplicativo. O valor mínimo para resgate é de R$ 100,00. A AVZ PropTech se reserva o direito de auditar o uso do aplicativo para garantir a legitimidade da contribuição. Qualquer uso indevido resultará na suspensão imediata da conta e na perda dos recebíveis acumulados.
+          Ao aceitar, você concorda em utilizar o GPS da AVZ PropTech para fins de monitoramento de rotas e contribuição para a otimização logística de projetos sustentáveis. A antecipação de recebíveis será creditada diariamente com base no uso do aplicativo. O valor mínimo para resgate é de R$ 100,00. A AVZ PropTech se reserva o direito de auditar o uso do aplicativo para garantir a legitimidade da contribuição. Qualquer uso indevido resultará na suspensão imediata da conta e na perda dos recebíveis acumulados.
         </p>
         <div class="form-group">
           <input type="checkbox" id="terms-checkbox">
@@ -602,11 +702,11 @@
         <button class="calculate-btn" onclick="aceitarTermos()"> Concordo e Desbloquear GPS </button>
       </div>
       <div class="divider" id="divider-2" style="display: none;"></div>
-
+      
       <h2 class="section-title" id="payment-title" style="display: none;">Adquirir AVZ para GPS Premium</h2>
       <div class="payment-container" id="payment-container" style="display: none;">
         <div class="highlight-box">
-          <p>O valor para desbloqueio do GPS Premium é de <strong>R$ 1.000,00</strong>.</p>
+          <p>O valor para desbloqueio do GPS Premium é de **R$ 1.000,00**.</p>
         </div>
         <p>Escolha a forma de pagamento:</p>
         <div class="payment-options">
@@ -620,7 +720,7 @@
           </div>
         </div>
         <div class="payment-form" id="pix-form" style="display: block;">
-          <p>Chave PIX: <strong>99.999.999/0001-99</strong></p>
+          <p>Chave PIX: **99.999.999/0001-99**</p>
           <div class="warning-box">
             <p><strong>Aviso:</strong> O pagamento via PIX é instantâneo. Após a confirmação, seu GPS será desbloqueado em até 10 minutos.</p>
           </div>
@@ -647,15 +747,15 @@
         </div>
         <div class="info-grid">
           <div class="info-card">
-		  <a href="2_GPS.html" class="main-btn" style="margin-top: 20px;">
-  <i class="fas fa-map-marked-alt"></i> Acessar GPS Premium
-</a>
+            <button class="main-btn" style="margin-top: 20px;" onclick="checkGPSAccess()">
+              <i class="fas fa-map-marked-alt"></i> Acessar GPS Premium
+            </button>
             <h3>Ganhos Diários</h3>
-            <p>Média de <strong>R$ 0,50</strong> por dia de uso do GPS.</p>
+            <p>Média de **R$ 0,50** por dia de uso do GPS.</p>
           </div>
           <div class="info-card">
             <h3>Último Resgate</h3>
-            <p>Ainda não há resgates. <br>Valor mínimo: <strong>R$ 100,00</strong></p>
+            <p>Ainda não há resgates. <br>Valor mínimo: **R$ 100,00**</p>
           </div>
         </div>
         <div class="divider"></div>
@@ -670,7 +770,7 @@
 
     </div>
   </main>
-
+  
   <div id="auth-modal" class="modal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeAuthModal()">×</span>
@@ -709,93 +809,428 @@
       </div>
     </div>
   </div>
-
+  
   <script>
+    const TEST_USER = {
+      name: "Cliente de Teste",
+      email: "teste@avz.com",
+      id: 556135,
+      isActive: false,
+      earnings: 0
+    };
+    
     let currentUser = null;
     let token = localStorage.getItem('avz_token');
     
-    // Simulação de usuário logado para teste
-    if (token) {
-      try {
-        currentUser = JSON.parse(atob(token));
-        // Se já está logado e ativo, mostrar dashboard
-        if (currentUser.isActive) {
-          showDashboard();
-        } else {
-          // Se está logado mas não ativo, mostrar calculadora
-          document.getElementById('calculator').style.display = 'block';
-          document.getElementById('divider-1').style.display = 'block';
+    let map;
+    let marker;
+    let locationCircle;
+    let otherVehicles = [];
+    let watchId;
+    let userId;
+    let directionsService;
+    let directionsRenderer;
+    let projectionIntervalId;
+    let earningsIntervalId;
+    let isDarkStyle = true;
+    let routeSimulationIntervalId;
+    let routePath;
+    let routeStep = 0;
+    
+    const otherVehicleMarkers = [];
+    let originPlace;
+    let destinationPlace;
+
+    function getUserIdFromToken() {
+      const token = localStorage.getItem('avz_token');
+      if (token) {
+        try {
+          const user = JSON.parse(atob(token));
+          return user.id;
+        } catch (e) {
+          localStorage.removeItem('avz_token');
+          return null;
         }
-      } catch (error) {
-        console.error('Erro ao verificar autenticação:', error);
-        token = null;
-        localStorage.removeItem('avz_token');
-        showAuthModal();
       }
-    } else {
-      showAuthModal();
+      return null;
     }
     
-    // Função para atualizar a interface
-    function updateUI() {
-      if (currentUser) {
-        document.getElementById('login-link').style.display = 'none';
-        document.getElementById('dashboard-link').style.display = 'inline-block';
-        document.getElementById('logout-link').style.display = 'inline-block';
-        document.querySelector('.client-info').style.display = 'block';
-        
-        // Esconder a seção inicial
-        document.getElementById('hero-section').style.display = 'none';
-        document.querySelector('.user-info-section').style.display = 'block';
+    function initMap() {
+      userId = getUserIdFromToken();
+      
+      const defaultLocation = { lat: -23.550520, lng: -46.633308 };
+      
+      const mapStyle = [
+        {
+          "featureType": "all",
+          "elementType": "all",
+          "stylers": [
+            { "invert_lightness": true },
+            { "saturation": -100 },
+            { "lightness": -30 },
+            { "gamma": 0.5 }
+          ]
+        },
+        {
+          "featureType": "water",
+          "elementType": "all",
+          "stylers": [
+            { "color": "#0a0a0a" }
+          ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "geometry.fill",
+          "stylers": [
+            { "color": "#1f1f1f" }
+          ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "geometry.stroke",
+          "stylers": [
+            { "color": "#d4af37" },
+            { "weight": 0.5 }
+          ]
+        },
+        {
+          "featureType": "transit.station.bus",
+          "elementType": "all",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "all",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        },
+        {
+          "featureType": "landscape.man_made",
+          "elementType": "geometry",
+          "stylers": [
+            { "color": "#111111" }
+          ]
+        },
+        {
+          "featureType": "landscape.natural",
+          "elementType": "geometry",
+          "stylers": [
+            { "color": "#111111" }
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry",
+          "stylers": [
+            { "color": "#d4af37" }
+          ]
+        }
+      ];
 
-        // Mostrar calculadora apenas se o usuário estiver logado
-        document.getElementById('calculator').style.display = 'block';
-        document.getElementById('divider-1').style.display = 'block';
-        
-        // Ocultar outras seções
-        document.getElementById('terms-container').style.display = 'none';
-        document.getElementById('terms-title').style.display = 'none';
-        document.getElementById('divider-2').style.display = 'none';
-        document.getElementById('payment-container').style.display = 'none';
-        document.getElementById('payment-title').style.display = 'none';
-        document.getElementById('divider-3').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'none';
-        document.getElementById('dashboard-title').style.display = 'none';
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: defaultLocation,
+        zoom: 15,
+        styles: mapStyle,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT
+        },
+        streetViewControl: false,
+        fullscreenControl: true
+      });
+      
+      marker = new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        title: "Sua localização",
+        icon: {
+          path: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9s-1.12 2.5-2.5 2.5z",
+          fillColor: '#d4af37',
+          fillOpacity: 1,
+          strokeWeight: 0,
+          scale: 2,
+          anchor: new google.maps.Point(12, 24)
+        }
+      });
+      
+      locationCircle = new google.maps.Circle({
+        strokeColor: '#d4af37',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#d4af37',
+        fillOpacity: 0.35,
+        map: map,
+        center: defaultLocation,
+        radius: 50
+      });
+      
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        panel: document.getElementById('directions-panel')
+      });
+      
+      const originInput = document.getElementById('origin-input');
+      const destinationInput = document.getElementById('destination-input');
+      const originAutocomplete = new google.maps.places.Autocomplete(originInput);
+      const destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
 
-        // Atualizar informações do usuário no dashboard - COM VERIFICAÇÃO DE SEGURANÇA
-        document.getElementById('user-name').textContent = currentUser.name || 'Usuário';
-        document.getElementById('user-id').textContent = (currentUser.id || '000000').toString().padStart(6, '0');
-        document.getElementById('user-status').textContent = currentUser.isActive ? 'Ativo' : 'Inativo';
+      originAutocomplete.addListener('place_changed', () => {
+        originPlace = originAutocomplete.getPlace();
+      });
 
-        // Rolar para a calculadora
-        window.scrollTo(0, document.getElementById('calculator').offsetTop);
-
+      destinationAutocomplete.addListener('place_changed', () => {
+        destinationPlace = destinationAutocomplete.getPlace();
+      });
+      
+      startLocationTracking();
+      startBonusProjection(parseFloat(localStorage.getItem('investmentAmount')) * 0.18);
+      
+      addOtherVehicles();
+    }
+    
+    function toggleMapStyle() {
+      if (isDarkStyle) {
+        map.setOptions({ styles: [] });
+        isDarkStyle = false;
       } else {
-        document.getElementById('login-link').style.display = 'inline-block';
-        document.getElementById('dashboard-link').style.display = 'none';
-        document.getElementById('logout-link').style.display = 'none';
-        document.querySelector('.client-info').style.display = 'none';
-        document.getElementById('hero-section').style.display = 'block';
-        document.querySelector('.user-info-section').style.display = 'none';
+        const mapStyle = [
+            {
+              "featureType": "all",
+              "elementType": "all",
+              "stylers": [
+                { "invert_lightness": true },
+                { "saturation": -100 },
+                { "lightness": -30 },
+                { "gamma": 0.5 }
+              ]
+            },
+            {
+              "featureType": "water",
+              "elementType": "all",
+              "stylers": [
+                { "color": "#0a0a0a" }
+              ]
+            },
+            {
+              "featureType": "road",
+              "elementType": "geometry.fill",
+              "stylers": [
+                { "color": "#1f1f1f" }
+              ]
+            },
+            {
+              "featureType": "road",
+              "elementType": "geometry.stroke",
+              "stylers": [
+                { "color": "#d4af37" },
+                { "weight": 0.5 }
+              ]
+            },
+            {
+              "featureType": "transit.station.bus",
+              "elementType": "all",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+            {
+              "featureType": "poi",
+              "elementType": "all",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+            {
+              "featureType": "landscape.man_made",
+              "elementType": "geometry",
+              "stylers": [
+                { "color": "#111111" }
+              ]
+            },
+            {
+              "featureType": "landscape.natural",
+              "elementType": "geometry",
+              "stylers": [
+                { "color": "#111111" }
+              ]
+            },
+            {
+              "featureType": "administrative",
+              "elementType": "geometry",
+              "stylers": [
+                { "color": "#d4af37" }
+              ]
+            }
+          ];
+        map.setOptions({ styles: mapStyle });
+        isDarkStyle = true;
+      }
+    }
 
-        // Esconder todas as seções
-        document.getElementById('calculator').style.display = 'none';
-        document.getElementById('divider-1').style.display = 'none';
-        document.getElementById('terms-container').style.display = 'none';
-        document.getElementById('terms-title').style.display = 'none';
-        document.getElementById('divider-2').style.display = 'none';
-        document.getElementById('payment-container').style.display = 'none';
-        document.getElementById('payment-title').style.display = 'none';
-        document.getElementById('divider-3').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'none';
-        document.getElementById('dashboard-title').style.display = 'none';
+    function startLocationTracking() {
+      if (navigator.geolocation) {
+        document.getElementById('status-text').textContent = 'Ativo';
+        watchId = navigator.geolocation.watchPosition(position => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          marker.setPosition(pos);
+          locationCircle.setCenter(pos);
+          map.setCenter(pos);
+          updateOtherVehicles();
+        }, error => {
+          document.getElementById('status-text').textContent = 'Não foi possível obter sua localização. Operando com ponto de partida padrão.';
+          console.warn("Erro ao obter a localização:", error.message);
+        }, {
+          enableHighAccuracy: true,
+          maximumAge: 0,
+          timeout: 5000
+        });
+      } else {
+        document.getElementById('status-text').textContent = 'Não suportado';
+        console.error("Seu navegador não suporta geolocalização.");
+      }
+    }
+
+    function addOtherVehicles() {
+        const busIcon = {
+            url: "https://maps.google.com/mapfiles/kml/shapes/bus.png",
+            scaledSize: new google.maps.Size(32, 32)
+        };
+        const taxiIcon = {
+            url: "https://maps.google.com/mapfiles/kml/shapes/taxi.png",
+            scaledSize: new google.maps.Size(32, 32)
+        };
+        const uberIcon = {
+            url: "https://maps.google.com/mapfiles/kml/shapes/cabs.png",
+            scaledSize: new google.maps.Size(32, 32)
+        };
+
+        const vehicleLocations = [
+            { lat: -23.555, lng: -46.640, type: 'Ônibus', icon: busIcon },
+            { lat: -23.545, lng: -46.625, type: 'Táxi', icon: taxiIcon },
+            { lat: -23.560, lng: -46.630, type: 'Uber', icon: uberIcon }
+        ];
+
+        vehicleLocations.forEach(vehicle => {
+            const vehicleMarker = new google.maps.Marker({
+                position: vehicle,
+                map: map,
+                icon: vehicle.icon,
+                title: vehicle.type
+            });
+            otherVehicleMarkers.push(vehicleMarker);
+        });
+    }
+
+    function updateOtherVehicles() {
+        otherVehicleMarkers.forEach(marker => {
+            const pos = marker.getPosition();
+            const newLat = pos.lat() + (Math.random() - 0.5) * 0.0005;
+            const newLng = pos.lng() + (Math.random() - 0.5) * 0.0005;
+            marker.setPosition({ lat: newLat, lng: newLng });
+        });
+    }
+
+    function startEarningsSimulation() {
+      if (earningsIntervalId) clearInterval(earningsIntervalId);
+      
+      if (currentUser && currentUser.isActive) {
+        earningsIntervalId = setInterval(() => {
+          const dailyGain = 0.50; 
+          const gainPerInterval = dailyGain / (24 * 60 * 6); 
+          
+          currentUser.earnings += gainPerInterval;
+          localStorage.setItem('avz_token', btoa(JSON.stringify(currentUser)));
+          
+          document.getElementById('earnings-display').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
+          document.getElementById('accumulated-earnings').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
+          
+        }, 10000);
       }
     }
     
-    // Chamar a função inicial
-    updateUI();
-
-    // Funções de Autenticação (simuladas)
+    function startBonusProjection(totalBonus) {
+      if (projectionIntervalId) clearInterval(projectionIntervalId);
+      
+      const projectedEarningsElement = document.getElementById('projected-earnings');
+      const durationSeconds = 10;
+      const totalSteps = durationSeconds * 100;
+      let currentStep = 0;
+      
+      projectedEarningsElement.textContent = `R$ 0.00`;
+      
+      projectionIntervalId = setInterval(() => {
+        currentStep++;
+        const currentBonus = (totalBonus / totalSteps) * currentStep;
+        
+        if (currentBonus >= totalBonus) {
+          projectedEarningsElement.textContent = `R$ ${totalBonus.toFixed(2)}`;
+          clearInterval(projectionIntervalId);
+        } else {
+          projectedEarningsElement.textContent = `R$ ${currentBonus.toFixed(8)}`;
+        }
+      }, 10);
+    }
+    
+    window.onload = function() {
+      updateUI();
+    };
+    
+    function updateUI() {
+      const sections = document.querySelectorAll('#hero-section, .user-info-section, #calculator-title, #calculator, #divider-1, #terms-title, #terms-container, #divider-2, #payment-title, #payment-container, #divider-3, #gps-section, #dashboard-title, #dashboard');
+      sections.forEach(s => s.style.display = 'none');
+      
+      token = localStorage.getItem('avz_token');
+      
+      if (token) {
+        try {
+          currentUser = JSON.parse(atob(token));
+          
+          document.getElementById('login-link').style.display = 'none';
+          document.getElementById('logout-link').style.display = 'inline-block';
+          document.getElementById('dashboard-link').style.display = 'inline-block';
+          document.querySelector('.client-info').style.display = 'flex';
+          document.getElementById('client-info-id').textContent = (currentUser.id || '000000').toString().padStart(6, '0');
+          document.querySelector('.user-info-section').style.display = 'block';
+          document.getElementById('user-name').textContent = currentUser.name || 'Usuário';
+          document.getElementById('user-id').textContent = (currentUser.id || '000000').toString().padStart(6, '0');
+          document.getElementById('user-status').textContent = currentUser.isActive ? 'Ativo' : 'Inativo';
+          
+          if (currentUser.isActive) {
+            showDashboard();
+          } else if (localStorage.getItem('hasCalculated')) {
+            document.getElementById('calculator-title').style.display = 'block';
+            document.getElementById('calculator').style.display = 'block';
+            document.getElementById('result-box').style.display = 'block';
+            document.getElementById('divider-1').style.display = 'block';
+            window.scrollTo(0, document.getElementById('calculator-title').offsetTop);
+          } else {
+             document.getElementById('calculator-title').style.display = 'block';
+             document.getElementById('calculator').style.display = 'block';
+             document.getElementById('divider-1').style.display = 'block';
+             window.scrollTo(0, document.getElementById('calculator-title').offsetTop);
+          }
+        } catch (error) {
+          token = null;
+          localStorage.removeItem('avz_token');
+          document.getElementById('hero-section').style.display = 'block';
+          document.getElementById('login-link').style.display = 'inline-block';
+        }
+      } else {
+        document.getElementById('hero-section').style.display = 'block';
+        document.getElementById('login-link').style.display = 'inline-block';
+        document.getElementById('logout-link').style.display = 'none';
+        document.getElementById('dashboard-link').style.display = 'none';
+        document.querySelector('.client-info').style.display = 'none';
+      }
+    }
+    
     function showAuthModal() {
       document.getElementById('auth-modal').style.display = 'flex';
     }
@@ -803,7 +1238,7 @@
     function closeAuthModal() {
       document.getElementById('auth-modal').style.display = 'none';
     }
-
+    
     function showAuthForm(formId) {
       const forms = document.querySelectorAll('.auth-form-content');
       forms.forEach(form => form.classList.remove('active'));
@@ -815,59 +1250,50 @@
     }
 
     function login() {
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
 
-      if (email === 'teste@avz.com' && password === '123456') {
-        const user = {
-          name: 'João Victor',
-          email: 'joao.victor@avz.com',
-          id: 400988,
-          isActive: false, // Inicialmente Inativo
-          earnings: 0
-        };
+        if (email === TEST_USER.email && password === 'senha123') { 
+            const user = { ...TEST_USER, isActive: false, earnings: 0 };
+            const token = btoa(JSON.stringify(user));
+            localStorage.setItem('avz_token', token);
+            currentUser = user;
+            closeAuthModal();
+            updateUI();
+            alert("Modo de Teste: Login realizado com sucesso!");
+        } else {
+            alert("Email ou senha incorretos.");
+        }
+    }
+
+    function register() {
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        
+        if (!name || !email || password.length < 6) {
+            alert('Por favor, preencha todos os campos corretamente (a senha deve ter no mínimo 6 caracteres).');
+            return;
+        }
+
+        const user = { ...TEST_USER, name: name, email: email };
         const token = btoa(JSON.stringify(user));
         localStorage.setItem('avz_token', token);
         currentUser = user;
         closeAuthModal();
         updateUI();
-      } else {
-        alert('Email ou senha incorretos.');
-      }
+        alert('Modo de Teste: Cadastro realizado localmente. ID de Cliente ' + user.id + ' registrado.');
     }
     
-    function register() {
-      const name = document.getElementById('register-name').value;
-      const email = document.getElementById('register-email').value;
-      const password = document.getElementById('register-password').value;
-      
-      if (name && email && password.length >= 6) {
-        const user = {
-          name,
-          email,
-          id: Math.floor(Math.random() * 900000) + 100000,
-          isActive: false, // Inicialmente Inativo
-          earnings: 0
-        };
-        const token = btoa(JSON.stringify(user));
-        localStorage.setItem('avz_token', token);
-        currentUser = user;
-        closeAuthModal();
-        updateUI();
-        alert('Cadastro realizado com sucesso! Agora faça login para continuar.');
-      } else {
-        alert('Por favor, preencha todos os campos corretamente.');
-      }
-    }
-
     function logout() {
       localStorage.removeItem('avz_token');
+      localStorage.removeItem('hasCalculated');
+      localStorage.removeItem('investmentAmount');
       currentUser = null;
       updateUI();
       window.scrollTo(0, 0);
     }
     
-    // Funções do fluxo principal
     function calculateEarnings() {
       const contributionValue = parseFloat(document.getElementById('contribution-value').value);
       const usageDays = parseInt(document.getElementById('usage-days').value);
@@ -877,35 +1303,39 @@
         return;
       }
       
-      const monthlyReturnRate = 0.03; 
-      const totalReturnRate = 0.18; 
+      const monthlyReturnRate = 0.03;
+      const totalReturnRate = 0.18;
       
       const monthlyReturn = contributionValue * monthlyReturnRate;
       const totalReturn = contributionValue * totalReturnRate;
       const returnPercentage = totalReturnRate * 100;
-
-      // Exibir resultados
+      
+      localStorage.setItem('investmentAmount', contributionValue);
+      localStorage.setItem('hasCalculated', true);
+      
       document.getElementById('contribution-display').textContent = `R$ ${contributionValue.toFixed(2)}`;
       document.getElementById('monthly-return').textContent = `R$ ${monthlyReturn.toFixed(2)}`;
       document.getElementById('total-return').textContent = `R$ ${totalReturn.toFixed(2)}`;
       document.getElementById('return-percentage').textContent = `${returnPercentage.toFixed(0)}%`;
       document.getElementById('progress-bar').style.width = `${returnPercentage.toFixed(0)}%`;
       document.getElementById('progress-text').textContent = `${returnPercentage.toFixed(0)}%`;
-
+      
       document.getElementById('result-box').style.display = 'block';
-
-      // Mostrar a seção de termos após o cálculo
+      
+      startBonusProjection(totalReturn);
+    }
+    
+    function continueToTerms() {
       document.getElementById('terms-title').style.display = 'block';
       document.getElementById('terms-container').style.display = 'block';
       document.getElementById('divider-2').style.display = 'block';
       window.scrollTo(0, document.getElementById('terms-title').offsetTop);
     }
-
+    
     function aceitarTermos() {
       const termsAccepted = document.getElementById('terms-checkbox').checked;
       
       if (termsAccepted) {
-        // Mostrar a seção de pagamento
         document.getElementById('payment-title').style.display = 'block';
         document.getElementById('payment-container').style.display = 'block';
         document.getElementById('divider-3').style.display = 'block';
@@ -919,35 +1349,9 @@
       alert("Pagamento simulado com sucesso! Seu GPS Premium foi desbloqueado.");
       currentUser.isActive = true;
       localStorage.setItem('avz_token', btoa(JSON.stringify(currentUser)));
+      startEarningsSimulation();
       updateUI();
       showDashboard();
-    }
-    
-    function showDashboard() {
-      if (!currentUser || !currentUser.isActive) {
-        alert("Por favor, faça login e adquira o GPS Premium para acessar o dashboard.");
-        return;
-      }
-      
-      // Esconder todas as seções
-      document.getElementById('hero-section').style.display = 'none';
-      document.querySelector('.user-info-section').style.display = 'none';
-      document.getElementById('calculator').style.display = 'none';
-      document.getElementById('divider-1').style.display = 'none';
-      document.getElementById('terms-container').style.display = 'none';
-      document.getElementById('terms-title').style.display = 'none';
-      document.getElementById('divider-2').style.display = 'none';
-      document.getElementById('payment-container').style.display = 'none';
-      document.getElementById('payment-title').style.display = 'none';
-      document.getElementById('divider-3').style.display = 'none';
-      
-      // Mostrar dashboard
-      document.getElementById('dashboard').style.display = 'block';
-      document.getElementById('dashboard-title').style.display = 'block';
-      window.scrollTo(0, document.getElementById('dashboard-title').offsetTop);
-
-      // Atualizar info no dashboard
-      document.getElementById('accumulated-earnings').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
     }
     
     function selectPayment(option) {
@@ -958,8 +1362,7 @@
       document.getElementById('card-form').style.display = 'none';
       document.getElementById(`${option}-form`).style.display = 'block';
     }
-
-    // Fechar modal ao clicar fora dele
+    
     window.onclick = function(event) {
       const modal = document.getElementById('auth-modal');
       if (event.target === modal) {
@@ -967,11 +1370,118 @@
       }
     }
     
-  </script>
+    function showDashboard() {
+      if (!currentUser) {
+        alert("Por favor, faça login para acessar o dashboard.");
+        showAuthModal();
+        return;
+      }
+      
+      const sections = document.querySelectorAll('#hero-section, .user-info-section, #calculator-title, #calculator, #divider-1, #terms-title, #terms-container, #divider-2, #payment-title, #payment-container, #divider-3, #gps-section');
+      sections.forEach(s => s.style.display = 'none');
+      
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('dashboard-title').style.display = 'block';
+      window.scrollTo(0, document.getElementById('dashboard-title').offsetTop);
+      
+      document.getElementById('user-status').textContent = currentUser.isActive ? 'Ativo' : 'Inativo';
+      document.getElementById('accumulated-earnings').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
+    }
 
+    function checkGPSAccess() {
+      if (currentUser && currentUser.isActive) {
+        const sections = document.querySelectorAll('#hero-section, .user-info-section, #calculator-title, #calculator, #divider-1, #terms-title, #terms-container, #divider-2, #payment-title, #payment-container, #divider-3, #dashboard-title, #dashboard');
+        sections.forEach(s => s.style.display = 'none');
+        document.getElementById('gps-section').style.display = 'block';
+        if (typeof google !== 'undefined') {
+          initMap();
+        }
+      } else {
+        alert("O GPS Premium está bloqueado. Por favor, acesse a calculadora e adquira o serviço para desbloqueá-lo.");
+        showDashboard();
+      }
+    }
+
+    function calculateAndDisplayRoute() {
+      stopRoute();
+      
+      const destination = document.getElementById('destination-input').value;
+
+      if (!destination) {
+        alert("Por favor, digite um destino.");
+        return;
+      }
+      
+      let origin;
+      if (originPlace && originPlace.geometry) {
+        origin = originPlace.geometry.location;
+      } else {
+        origin = marker.getPosition();
+      }
+
+      let destinationAddress;
+      if (destinationPlace && destinationPlace.geometry) {
+        destinationAddress = destinationPlace.geometry.location;
+      } else {
+        destinationAddress = destination;
+      }
+      
+      directionsService.route({
+        origin: origin,
+        destination: destinationAddress,
+        travelMode: 'DRIVING'
+      }, (response, status) => {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+          const route = response.routes[0];
+          const leg = route.legs[0];
+          document.getElementById('distance-display').textContent = leg.distance.text;
+          document.getElementById('duration-display').textContent = leg.duration.text;
+          
+          routePath = response.routes[0].overview_path;
+          routeStep = 0;
+          document.getElementById('route-controls').style.display = 'flex';
+          document.getElementById('start-route-btn').style.display = 'inline-block';
+        } else {
+          window.alert('Falha ao traçar a rota. Status: ' + status);
+          document.getElementById('route-controls').style.display = 'none';
+        }
+      });
+    }
+
+    function startRoute() {
+      if (!routePath || routePath.length === 0) {
+        alert("Por favor, trace uma rota primeiro.");
+        return;
+      }
+      
+      document.getElementById('start-route-btn').style.display = 'none';
+      document.getElementById('stop-route-btn').style.display = 'inline-block';
+      
+      routeSimulationIntervalId = setInterval(() => {
+        if (routeStep < routePath.length) {
+          const newPosition = routePath[routeStep];
+          marker.setPosition(newPosition);
+          map.setCenter(newPosition);
+          routeStep++;
+        } else {
+          stopRoute();
+          alert("Chegou ao seu destino!");
+        }
+      }, 500); // Mova a cada 0.5 segundos para simular o movimento
+    }
+
+    function stopRoute() {
+      clearInterval(routeSimulationIntervalId);
+      document.getElementById('stop-route-btn').style.display = 'none';
+      document.getElementById('start-route-btn').style.display = 'inline-block';
+    }
+  </script>
+  
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7WQiZgCVhr35Zc-hTJAtIT897YhIgUE0&callback=initMap&libraries=maps,marker,places,routes"></script>
+  
   <footer>
     <p>© 2025 AVZ PropTech - Todos os direitos reservados.</p>
   </footer>
-
 </body>
 </html>
