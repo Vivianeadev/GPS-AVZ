@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
+  #map-in-modal {
+    width: 100%;
+}
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --black: #0a0a0a; --dark-black: #000000;
@@ -50,6 +53,7 @@
       cursor: pointer;
       padding: 8px 12px;
       border-radius: 6px;
+      box-shadow: 0 0 5px rgba(232, 180, 184, 0.2);
     }
     nav a:hover {
       color: var(--gold);
@@ -161,6 +165,7 @@
       padding: 20px;
       border: 1px solid rgba(212, 175, 55, 0.3);
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 8px var(--rose-shadow);
     }
     .step-number {
       width: 40px;
@@ -173,6 +178,7 @@
       justify-content: center;
       margin: 0 auto 15px;
       font-weight: bold;
+      box-shadow: 0 4px 10px var(--rose-shadow);
     }
     .step-title {
       font-weight: 600;
@@ -203,6 +209,7 @@
       color: white;
       font-size: 1rem;
       transition: all 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
     .form-group input:focus {
       outline: none;
@@ -233,6 +240,7 @@
       border-radius: 10px;
       border: 1px solid rgba(212, 175, 55, 0.3);
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     .result-value {
       font-size: 1.5rem;
@@ -280,6 +288,7 @@
       padding: 20px;
       border: 1px solid rgba(212, 175, 55, 0.3);
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     .info-card h3 {
       color: var(--gold);
@@ -313,6 +322,7 @@
       border-radius: 10px;
       margin: 20px 0;
       overflow: hidden;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
     }
     .progress-bar {
       height: 100%;
@@ -375,11 +385,13 @@
       cursor: pointer;
       opacity: 0.7;
       transition: 0.3s;
+      box-shadow: 0 2px 5px rgba(232, 180, 184, 0.1);
     }
     .auth-tab.active {
       opacity: 1;
       border-bottom: 2px solid var(--gold);
       color: var(--gold);
+      box-shadow: 0 2px 5px var(--rose-shadow);
     }
     .auth-form-content {
       display: none;
@@ -415,8 +427,9 @@
       text-align: center;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(232, 180, 184, 0.2);
     }
-    .payment-option:hover, .payment-option.selected {
+    .payment-option.selected {
       background: rgba(212, 175, 55, 0.1);
       border-color: var(--gold);
       box-shadow: 0 0 10px var(--rose-shadow);
@@ -431,6 +444,7 @@
       border-radius: 8px;
       border: 1px solid #444;
       margin-bottom: 20px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
     }
     .dashboard {
       display: none;
@@ -444,6 +458,7 @@
       margin-bottom: 20px;
       text-align: center;
       font-size: 0.9em;
+      box-shadow: 0 4px 10px rgba(232, 180, 184, 0.2);
     }
     .projection-box strong {
       color: var(--light-gold);
@@ -460,6 +475,7 @@
       min-width: 300px;
       border-radius: 10px;
       border: 1px solid var(--gold);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
     #directions-panel {
       flex: 1;
@@ -473,6 +489,7 @@
       line-height: 1.5;
       border: 1px solid rgba(212, 175, 55, 0.3);
       color: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
     #directions-panel strong {
       color: var(--gold);
@@ -511,6 +528,7 @@
       color: white;
       font-size: 1rem;
       transition: all 0.3s;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
     }
     .input-row input:focus {
       outline: none;
@@ -526,9 +544,11 @@
       cursor: pointer;
       font-weight: bold;
       transition: background 0.3s;
+      box-shadow: 0 4px 10px rgba(232, 180, 184, 0.2);
     }
     .input-row button:hover {
       background: var(--light-gold);
+      box-shadow: 0 6px 15px var(--rose-shadow);
     }
     @media (max-width: 768px) {
       .map-and-directions-wrapper {
@@ -647,8 +667,8 @@
       <h2 class="section-title" id="calculator-title" style="display: none;">Calculadora de Antecipação</h2>
       <div class="calculator" id="calculator" style="display: none;">
         <div class="form-group">
-          <label for="contribution-value">Valor da Contribuição (mínimo R$ 100,00):</label>
-          <input type="number" id="contribution-value" placeholder="Ex: 500.00" min="100">
+          <label for="contribution-value">Valor da Contribuição (R$ 30,00 a R$ 300,00):</label>
+          <input type="number" id="contribution-value" placeholder="Ex: 50.00" min="30" max="300">
         </div>
         <div class="form-group">
           <label for="usage-days">Dias de Uso do GPS por Semana (1-7):</label>
@@ -710,13 +730,17 @@
         </div>
         <p>Escolha a forma de pagamento:</p>
         <div class="payment-options">
-          <div class="payment-option selected" onclick="selectPayment('pix')">
+          <div class="payment-option selected" id="pix-option" onclick="selectPayment('pix')">
             <i class="fas fa-qrcode"></i>
             <p>PIX</p>
           </div>
-          <div class="payment-option" onclick="selectPayment('card')">
+          <div class="payment-option" id="card-option" onclick="selectPayment('card')">
             <i class="fas fa-credit-card"></i>
             <p>Cartão de Crédito</p>
+          </div>
+          <div class="payment-option" id="boleto-option" onclick="selectPayment('boleto')">
+            <i class="fas fa-barcode"></i>
+            <p>Boleto Bancário</p>
           </div>
         </div>
         <div class="payment-form" id="pix-form" style="display: block;">
@@ -724,17 +748,29 @@
           <div class="warning-box">
             <p><strong>Aviso:</strong> O pagamento via PIX é instantâneo. Após a confirmação, seu GPS será desbloqueado em até 10 minutos.</p>
           </div>
-          <button class="calculate-btn" onclick="simulatePayment()"> <i class="fas fa-check-circle"></i> Simular Pagamento </button>
+          <button class="calculate-btn" onclick="simulatePayment()">
+            <i class="fas fa-check-circle"></i> Simular Pagamento
+          </button>
         </div>
         <div class="payment-form" id="card-form" style="display: none;">
           <div class="warning-box">
             <p><strong>Simulação:</strong> A função de cartão de crédito não está ativa no momento. Clique no botão abaixo para simular a conclusão do pagamento e acessar o dashboard.</p>
           </div>
-          <button class="calculate-btn" onclick="simulatePayment()"> <i class="fas fa-check-circle"></i> Simular Pagamento </button>
+          <button class="calculate-btn" onclick="simulatePayment()">
+            <i class="fas fa-check-circle"></i> Simular Pagamento
+          </button>
+        </div>
+        <div class="payment-form" id="boleto-form" style="display: none;">
+          <div class="warning-box">
+            <p><strong>Simulação:</strong> A função de boleto não está ativa no momento. Clique no botão abaixo para simular a conclusão do pagamento e acessar o dashboard.</p>
+          </div>
+          <button class="calculate-btn" onclick="simulatePayment()">
+            <i class="fas fa-check-circle"></i> Simular Pagamento
+          </button>
         </div>
       </div>
       <div class="divider" id="divider-3" style="display: none;"></div>
-
+      
       <h2 class="section-title" id="dashboard-title" style="display: none;">Seu Dashboard</h2>
       <div class="dashboard" id="dashboard" style="display: none;">
         <div class="hero-section">
@@ -767,7 +803,6 @@
           <li><i class="fas fa-shield-alt"></i> Segurança avançada para seus dados.</li>
         </ul>
       </div>
-
     </div>
   </main>
   
@@ -809,7 +844,15 @@
       </div>
     </div>
   </div>
-  
+
+  <div id="map-modal" class="modal">
+    <div class="modal-content" style="max-width: 90%;">
+      <span class="close-modal" onclick="closeMapModal()">×</span>
+      <h2 class="section-title">Mapa AVZ PropTech</h2>
+      <div id="map-in-modal" style="height: 75vh; border-radius: 10px; border: 1px solid var(--gold);"></div>
+    </div>
+  </div>
+
   <script>
     const TEST_USER = {
       name: "Cliente de Teste",
@@ -818,10 +861,8 @@
       isActive: false,
       earnings: 0
     };
-    
     let currentUser = null;
     let token = localStorage.getItem('avz_token');
-    
     let map;
     let marker;
     let locationCircle;
@@ -836,10 +877,26 @@
     let routeSimulationIntervalId;
     let routePath;
     let routeStep = 0;
-    
     const otherVehicleMarkers = [];
     let originPlace;
     let destinationPlace;
+
+    function showAuthModal() {
+      document.getElementById('auth-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function showAuthForm(formId) {
+      document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.auth-form-content').forEach(content => content.classList.remove('active'));
+      document.getElementById(`${formId}-tab`).classList.add('active');
+      document.getElementById(`${formId}-form`).classList.add('active');
+    }
 
     function getUserIdFromToken() {
       const token = localStorage.getItem('avz_token');
@@ -854,90 +911,304 @@
       }
       return null;
     }
+
+    function updateUserStatus() {
+      if (currentUser) {
+        document.querySelector('.user-info-section').style.display = 'block';
+        document.getElementById('user-name').textContent = currentUser.name;
+        document.getElementById('user-id').textContent = currentUser.id;
+        document.getElementById('user-status').textContent = currentUser.isActive ? 'Ativo' : 'Inativo';
+        document.getElementById('login-link').style.display = 'none';
+        document.getElementById('dashboard-link').style.display = 'inline-block';
+        document.getElementById('logout-link').style.display = 'inline-block';
+        document.getElementById('hero-section').style.display = 'none';
+        document.getElementById('gps-section').style.display = currentUser.isActive ? 'block' : 'none';
+        document.getElementById('calculator-title').style.display = currentUser.isActive ? 'none' : 'block';
+        document.getElementById('calculator').style.display = currentUser.isActive ? 'none' : 'block';
+        document.getElementById('terms-title').style.display = 'none';
+        document.getElementById('terms-container').style.display = 'none';
+        document.getElementById('payment-title').style.display = 'none';
+        document.getElementById('payment-container').style.display = 'none';
+        
+        if (currentUser.isActive) {
+           document.getElementById('dashboard').style.display = 'block';
+           document.getElementById('dashboard-title').style.display = 'block';
+           document.getElementById('accumulated-earnings').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
+        }
+      }
+    }
+
+    function login() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      
+      if (email === TEST_USER.email && password === '123456') {
+        const tokenData = { name: TEST_USER.name, id: TEST_USER.id, isActive: TEST_USER.isActive, earnings: TEST_USER.earnings };
+        token = btoa(JSON.stringify(tokenData));
+        localStorage.setItem('avz_token', token);
+        currentUser = tokenData;
+        updateUserStatus();
+        closeAuthModal();
+      } else {
+        alert('Email ou senha incorretos.');
+      }
+    }
+
+    function register() {
+      const name = document.getElementById('register-name').value;
+      const email = document.getElementById('register-email').value;
+      const password = document.getElementById('register-password').value;
+      
+      if (name && email && password.length >= 6) {
+        const newUser = { name, email, id: Math.floor(Math.random() * 1000000), isActive: false, earnings: 0 };
+        const tokenData = btoa(JSON.stringify(newUser));
+        localStorage.setItem('avz_token', tokenData);
+        currentUser = newUser;
+        updateUserStatus();
+        closeAuthModal();
+        alert(`Cadastro realizado com sucesso! Seu ID de cliente é: ${newUser.id}`);
+      } else {
+        alert('Por favor, preencha todos os campos. A senha deve ter no mínimo 6 caracteres.');
+      }
+    }
     
+    function logout() {
+      localStorage.removeItem('avz_token');
+      localStorage.removeItem('investmentAmount');
+      localStorage.removeItem('hasCalculated');
+      currentUser = null;
+      document.querySelector('.user-info-section').style.display = 'none';
+      document.getElementById('login-link').style.display = 'inline-block';
+      document.getElementById('dashboard-link').style.display = 'none';
+      document.getElementById('logout-link').style.display = 'none';
+      document.getElementById('hero-section').style.display = 'block';
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('dashboard-title').style.display = 'none';
+      document.getElementById('gps-section').style.display = 'none';
+      document.getElementById('calculator-title').style.display = 'block';
+      document.getElementById('calculator').style.display = 'block';
+    }
+
+    function showDashboard() {
+      document.getElementById('hero-section').style.display = 'none';
+      document.getElementById('gps-section').style.display = 'none';
+      document.getElementById('calculator-title').style.display = 'none';
+      document.getElementById('calculator').style.display = 'none';
+      document.getElementById('terms-title').style.display = 'none';
+      document.getElementById('terms-container').style.display = 'none';
+      document.getElementById('payment-container').style.display = 'none';
+      document.getElementById('payment-title').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('dashboard-title').style.display = 'block';
+      window.scrollTo(0, document.getElementById('dashboard-title').offsetTop);
+      
+      if (currentUser) {
+        document.getElementById('accumulated-earnings').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
+      }
+    }
+    
+    function calculateEarnings() {
+      const contributionValue = parseFloat(document.getElementById('contribution-value').value);
+      const usageDays = parseInt(document.getElementById('usage-days').value);
+      
+      if (isNaN(contributionValue) || contributionValue < 30 || contributionValue > 300 || isNaN(usageDays) || usageDays < 1 || usageDays > 7) {
+        alert("Por favor, insira valores válidos. O valor do investimento deve ser entre R$ 30,00 e R$ 300,00.");
+        return;
+      }
+      
+      const monthlyReturnRate = 0.03;
+      const totalReturnRate = 0.18;
+      
+      const monthlyReturn = contributionValue * monthlyReturnRate;
+      const totalReturn = contributionValue * totalReturnRate;
+      const returnPercentage = totalReturnRate * 100;
+      
+      localStorage.setItem('investmentAmount', contributionValue);
+      localStorage.setItem('hasCalculated', true);
+      
+      document.getElementById('contribution-display').textContent = `R$ ${contributionValue.toFixed(2)}`;
+      document.getElementById('monthly-return').textContent = `R$ ${monthlyReturn.toFixed(2)}`;
+      document.getElementById('total-return').textContent = `R$ ${totalReturn.toFixed(2)}`;
+      document.getElementById('return-percentage').textContent = `${returnPercentage.toFixed(0)}%`;
+      document.getElementById('progress-bar').style.width = `${returnPercentage.toFixed(0)}%`;
+      document.getElementById('progress-text').textContent = `${returnPercentage.toFixed(0)}%`;
+      
+      document.getElementById('result-box').style.display = 'block';
+      
+      startBonusProjection(totalReturn);
+    }
+    
+    function startBonusProjection(totalBonus) {
+      if (projectionIntervalId) {
+        clearInterval(projectionIntervalId);
+      }
+      const projectionElement = document.getElementById('projected-earnings');
+      let currentProjection = 0;
+      const increment = totalBonus / (60 * 10); // 10 minutos
+      
+      projectionIntervalId = setInterval(() => {
+        currentProjection += increment;
+        if (currentProjection >= totalBonus) {
+          currentProjection = totalBonus;
+          clearInterval(projectionIntervalId);
+        }
+        projectionElement.textContent = `R$ ${currentProjection.toFixed(2)}`;
+      }, 1000); // Atualiza a cada segundo
+    }
+
+    function continueToTerms() {
+      document.getElementById('calculator').style.display = 'none';
+      document.getElementById('calculator-title').style.display = 'none';
+      document.getElementById('divider-1').style.display = 'none';
+      
+      document.getElementById('terms-container').style.display = 'block';
+      document.getElementById('terms-title').style.display = 'block';
+      document.getElementById('divider-2').style.display = 'block';
+      
+      window.scrollTo(0, document.getElementById('terms-title').offsetTop);
+    }
+    
+    function aceitarTermos() {
+      if (!document.getElementById('terms-checkbox').checked) {
+        alert('Você deve aceitar os Termos de Uso para continuar.');
+        return;
+      }
+      
+      document.getElementById('terms-container').style.display = 'none';
+      document.getElementById('terms-title').style.display = 'none';
+      document.getElementById('divider-2').style.display = 'none';
+      
+      document.getElementById('payment-container').style.display = 'block';
+      document.getElementById('payment-title').style.display = 'block';
+      document.getElementById('divider-3').style.display = 'block';
+      
+      window.scrollTo(0, document.getElementById('payment-title').offsetTop);
+    }
+
+    function simulatePayment() {
+      alert("Pagamento simulado com sucesso! Seu GPS Premium foi desbloqueado.");
+      
+      if (currentUser) {
+        currentUser.isActive = true;
+        currentUser.earnings = 0;
+        const tokenData = btoa(JSON.stringify(currentUser));
+        localStorage.setItem('avz_token', tokenData);
+        updateUserStatus();
+      }
+      
+      document.getElementById('payment-container').style.display = 'none';
+      document.getElementById('payment-title').style.display = 'none';
+      document.getElementById('divider-3').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('dashboard-title').style.display = 'block';
+      window.scrollTo(0, document.getElementById('dashboard-title').offsetTop);
+      
+      if (currentUser) {
+        startEarningsUpdates();
+      }
+    }
+
+    function startEarningsUpdates() {
+      if (earningsIntervalId) {
+        clearInterval(earningsIntervalId);
+      }
+      
+      earningsIntervalId = setInterval(() => {
+        if (currentUser && currentUser.isActive) {
+          const dailyRate = 0.50;
+          currentUser.earnings += dailyRate;
+          document.getElementById('earnings-display').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
+          const tokenData = btoa(JSON.stringify(currentUser));
+          localStorage.setItem('avz_token', tokenData);
+        }
+      }, 86400000); // Adiciona R$ 0,50 a cada 24 horas (86400000 milissegundos)
+    }
+
+    function checkGPSAccess() {
+      if (currentUser && currentUser.isActive) {
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('dashboard-title').style.display = 'none';
+        document.getElementById('gps-section').style.display = 'block';
+        if (localStorage.getItem('investmentAmount')) {
+          displayProjectedEarnings();
+        }
+      } else {
+        alert("Você precisa desbloquear o GPS Premium para acessá-lo. Retorne ao Dashboard para continuar.");
+      }
+    }
+
+    function displayProjectedEarnings() {
+      const storedAmount = localStorage.getItem('investmentAmount');
+      if (storedAmount) {
+        const totalReturnRate = 0.18;
+        const totalReturn = parseFloat(storedAmount) * totalReturnRate;
+        document.getElementById('projected-earnings').textContent = `R$ ${totalReturn.toFixed(2)}`;
+      } else {
+        document.getElementById('projected-earnings').textContent = 'Nenhum cálculo encontrado.';
+      }
+    }
+
+    function selectPayment(option) {
+      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+      document.getElementById(`${option}-option`).classList.add('selected');
+      
+      document.getElementById('pix-form').style.display = 'none';
+      document.getElementById('card-form').style.display = 'none';
+      document.getElementById('boleto-form').style.display = 'none';
+      document.getElementById(`${option}-form`).style.display = 'block';
+    }
+
+    function showMapModal() {
+      document.getElementById('map-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      // Garante que o mapa seja exibido corretamente após o modal ser aberto
+      setTimeout(() => {
+        google.maps.event.trigger(map, 'resize');
+        if (marker) {
+          map.setCenter(marker.getPosition());
+        }
+      }, 100);
+    }
+    
+    function closeMapModal() {
+      document.getElementById('map-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('auth-modal');
+      const mapModal = document.getElementById('map-modal');
+      if (event.target === modal) {
+        closeAuthModal();
+      }
+      if (event.target === mapModal) {
+        closeMapModal();
+      }
+    }
+    
+    // Simulação do Google Maps
     function initMap() {
       userId = getUserIdFromToken();
-      
       const defaultLocation = { lat: -23.550520, lng: -46.633308 };
       
-      const mapStyle = [
-        {
-          "featureType": "all",
-          "elementType": "all",
-          "stylers": [
-            { "invert_lightness": true },
-            { "saturation": -100 },
-            { "lightness": -30 },
-            { "gamma": 0.5 }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "all",
-          "stylers": [
-            { "color": "#0a0a0a" }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry.fill",
-          "stylers": [
-            { "color": "#1f1f1f" }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry.stroke",
-          "stylers": [
-            { "color": "#d4af37" },
-            { "weight": 0.5 }
-          ]
-        },
-        {
-          "featureType": "transit.station.bus",
-          "elementType": "all",
-          "stylers": [
-            { "visibility": "off" }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "all",
-          "stylers": [
-            { "visibility": "off" }
-          ]
-        },
-        {
-          "featureType": "landscape.man_made",
-          "elementType": "geometry",
-          "stylers": [
-            { "color": "#111111" }
-          ]
-        },
-        {
-          "featureType": "landscape.natural",
-          "elementType": "geometry",
-          "stylers": [
-            { "color": "#111111" }
-          ]
-        },
-        {
-          "featureType": "administrative",
-          "elementType": "geometry",
-          "stylers": [
-            { "color": "#d4af37" }
-          ]
-        }
+      const mapStyle = [ 
+          { "featureType": "all", "elementType": "all", "stylers": [ { "invert_lightness": true }, { "saturation": -100 }, { "lightness": -30 }, { "gamma": 0.5 } ] }, 
+          { "featureType": "water", "elementType": "all", "stylers": [ { "color": "#0a0a0a" } ] }, 
+          { "featureType": "road", "elementType": "geometry.fill", "stylers": [ { "color": "#1f1f1f" } ] }, 
+          { "featureType": "road", "elementType": "geometry.stroke", "stylers": [ { "color": "#d4af37" }, { "weight": 0.5 } ] }, 
+          { "featureType": "transit.station.bus", "elementType": "all", "stylers": [ { "visibility": "off" } ] }, 
+          { "featureType": "poi", "elementType": "all", "stylers": [ { "visibility": "off" } ] }, 
+          { "featureType": "landscape.man_made", "elementType": "geometry", "stylers": [ { "color": "#111111" } ] }, 
+          { "featureType": "landscape.natural", "elementType": "geometry", "stylers": [ { "color": "#111111" } ] }, 
+          { "featureType": "administrative", "elementType": "geometry", "stylers": [ { "color": "#d4af37" } ] } 
       ];
-
+      
       map = new google.maps.Map(document.getElementById("map"), {
         center: defaultLocation,
         zoom: 15,
         styles: mapStyle,
         mapTypeControl: true,
-        mapTypeControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT
-        },
+        mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_RIGHT },
         streetViewControl: false,
         fullscreenControl: true
       });
@@ -977,458 +1248,52 @@
       const destinationInput = document.getElementById('destination-input');
       const originAutocomplete = new google.maps.places.Autocomplete(originInput);
       const destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
-
+      
       originAutocomplete.addListener('place_changed', () => {
         originPlace = originAutocomplete.getPlace();
       });
-
       destinationAutocomplete.addListener('place_changed', () => {
         destinationPlace = destinationAutocomplete.getPlace();
       });
-      
-      startLocationTracking();
-      startBonusProjection(parseFloat(localStorage.getItem('investmentAmount')) * 0.18);
-      
-      addOtherVehicles();
     }
-    
+
     function toggleMapStyle() {
-      if (isDarkStyle) {
-        map.setOptions({ styles: [] });
-        isDarkStyle = false;
-      } else {
-        const mapStyle = [
-            {
-              "featureType": "all",
-              "elementType": "all",
-              "stylers": [
-                { "invert_lightness": true },
-                { "saturation": -100 },
-                { "lightness": -30 },
-                { "gamma": 0.5 }
-              ]
-            },
-            {
-              "featureType": "water",
-              "elementType": "all",
-              "stylers": [
-                { "color": "#0a0a0a" }
-              ]
-            },
-            {
-              "featureType": "road",
-              "elementType": "geometry.fill",
-              "stylers": [
-                { "color": "#1f1f1f" }
-              ]
-            },
-            {
-              "featureType": "road",
-              "elementType": "geometry.stroke",
-              "stylers": [
-                { "color": "#d4af37" },
-                { "weight": 0.5 }
-              ]
-            },
-            {
-              "featureType": "transit.station.bus",
-              "elementType": "all",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            },
-            {
-              "featureType": "poi",
-              "elementType": "all",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            },
-            {
-              "featureType": "landscape.man_made",
-              "elementType": "geometry",
-              "stylers": [
-                { "color": "#111111" }
-              ]
-            },
-            {
-              "featureType": "landscape.natural",
-              "elementType": "geometry",
-              "stylers": [
-                { "color": "#111111" }
-              ]
-            },
-            {
-              "featureType": "administrative",
-              "elementType": "geometry",
-              "stylers": [
-                { "color": "#d4af37" }
-              ]
-            }
-          ];
-        map.setOptions({ styles: mapStyle });
-        isDarkStyle = true;
-      }
-    }
-
-    function startLocationTracking() {
-      if (navigator.geolocation) {
-        document.getElementById('status-text').textContent = 'Ativo';
-        watchId = navigator.geolocation.watchPosition(position => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          marker.setPosition(pos);
-          locationCircle.setCenter(pos);
-          map.setCenter(pos);
-          updateOtherVehicles();
-        }, error => {
-          document.getElementById('status-text').textContent = 'Não foi possível obter sua localização. Operando com ponto de partida padrão.';
-          console.warn("Erro ao obter a localização:", error.message);
-        }, {
-          enableHighAccuracy: true,
-          maximumAge: 0,
-          timeout: 5000
-        });
-      } else {
-        document.getElementById('status-text').textContent = 'Não suportado';
-        console.error("Seu navegador não suporta geolocalização.");
-      }
-    }
-
-    function addOtherVehicles() {
-        const busIcon = {
-            url: "https://maps.google.com/mapfiles/kml/shapes/bus.png",
-            scaledSize: new google.maps.Size(32, 32)
-        };
-        const taxiIcon = {
-            url: "https://maps.google.com/mapfiles/kml/shapes/taxi.png",
-            scaledSize: new google.maps.Size(32, 32)
-        };
-        const uberIcon = {
-            url: "https://maps.google.com/mapfiles/kml/shapes/cabs.png",
-            scaledSize: new google.maps.Size(32, 32)
-        };
-
-        const vehicleLocations = [
-            { lat: -23.555, lng: -46.640, type: 'Ônibus', icon: busIcon },
-            { lat: -23.545, lng: -46.625, type: 'Táxi', icon: taxiIcon },
-            { lat: -23.560, lng: -46.630, type: 'Uber', icon: uberIcon }
-        ];
-
-        vehicleLocations.forEach(vehicle => {
-            const vehicleMarker = new google.maps.Marker({
-                position: vehicle,
-                map: map,
-                icon: vehicle.icon,
-                title: vehicle.type
+        if (isDarkStyle) {
+            map.setOptions({
+                styles: []
             });
-            otherVehicleMarkers.push(vehicleMarker);
-        });
-    }
-
-    function updateOtherVehicles() {
-        otherVehicleMarkers.forEach(marker => {
-            const pos = marker.getPosition();
-            const newLat = pos.lat() + (Math.random() - 0.5) * 0.0005;
-            const newLng = pos.lng() + (Math.random() - 0.5) * 0.0005;
-            marker.setPosition({ lat: newLat, lng: newLng });
-        });
-    }
-
-    function startEarningsSimulation() {
-      if (earningsIntervalId) clearInterval(earningsIntervalId);
-      
-      if (currentUser && currentUser.isActive) {
-        earningsIntervalId = setInterval(() => {
-          const dailyGain = 0.50; 
-          const gainPerInterval = dailyGain / (24 * 60 * 6); 
-          
-          currentUser.earnings += gainPerInterval;
-          localStorage.setItem('avz_token', btoa(JSON.stringify(currentUser)));
-          
-          document.getElementById('earnings-display').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
-          document.getElementById('accumulated-earnings').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
-          
-        }, 10000);
-      }
-    }
-    
-    function startBonusProjection(totalBonus) {
-      if (projectionIntervalId) clearInterval(projectionIntervalId);
-      
-      const projectedEarningsElement = document.getElementById('projected-earnings');
-      const durationSeconds = 10;
-      const totalSteps = durationSeconds * 100;
-      let currentStep = 0;
-      
-      projectedEarningsElement.textContent = `R$ 0.00`;
-      
-      projectionIntervalId = setInterval(() => {
-        currentStep++;
-        const currentBonus = (totalBonus / totalSteps) * currentStep;
-        
-        if (currentBonus >= totalBonus) {
-          projectedEarningsElement.textContent = `R$ ${totalBonus.toFixed(2)}`;
-          clearInterval(projectionIntervalId);
+            isDarkStyle = false;
         } else {
-          projectedEarningsElement.textContent = `R$ ${currentBonus.toFixed(8)}`;
-        }
-      }, 10);
-    }
-    
-    window.onload = function() {
-      updateUI();
-    };
-    
-    function updateUI() {
-      const sections = document.querySelectorAll('#hero-section, .user-info-section, #calculator-title, #calculator, #divider-1, #terms-title, #terms-container, #divider-2, #payment-title, #payment-container, #divider-3, #gps-section, #dashboard-title, #dashboard');
-      sections.forEach(s => s.style.display = 'none');
-      
-      token = localStorage.getItem('avz_token');
-      
-      if (token) {
-        try {
-          currentUser = JSON.parse(atob(token));
-          
-          document.getElementById('login-link').style.display = 'none';
-          document.getElementById('logout-link').style.display = 'inline-block';
-          document.getElementById('dashboard-link').style.display = 'inline-block';
-          document.querySelector('.client-info').style.display = 'flex';
-          document.getElementById('client-info-id').textContent = (currentUser.id || '000000').toString().padStart(6, '0');
-          document.querySelector('.user-info-section').style.display = 'block';
-          document.getElementById('user-name').textContent = currentUser.name || 'Usuário';
-          document.getElementById('user-id').textContent = (currentUser.id || '000000').toString().padStart(6, '0');
-          document.getElementById('user-status').textContent = currentUser.isActive ? 'Ativo' : 'Inativo';
-          
-          if (currentUser.isActive) {
-            showDashboard();
-          } else if (localStorage.getItem('hasCalculated')) {
-            document.getElementById('calculator-title').style.display = 'block';
-            document.getElementById('calculator').style.display = 'block';
-            document.getElementById('result-box').style.display = 'block';
-            document.getElementById('divider-1').style.display = 'block';
-            window.scrollTo(0, document.getElementById('calculator-title').offsetTop);
-          } else {
-             document.getElementById('calculator-title').style.display = 'block';
-             document.getElementById('calculator').style.display = 'block';
-             document.getElementById('divider-1').style.display = 'block';
-             window.scrollTo(0, document.getElementById('calculator-title').offsetTop);
-          }
-        } catch (error) {
-          token = null;
-          localStorage.removeItem('avz_token');
-          document.getElementById('hero-section').style.display = 'block';
-          document.getElementById('login-link').style.display = 'inline-block';
-        }
-      } else {
-        document.getElementById('hero-section').style.display = 'block';
-        document.getElementById('login-link').style.display = 'inline-block';
-        document.getElementById('logout-link').style.display = 'none';
-        document.getElementById('dashboard-link').style.display = 'none';
-        document.querySelector('.client-info').style.display = 'none';
-      }
-    }
-    
-    function showAuthModal() {
-      document.getElementById('auth-modal').style.display = 'flex';
-    }
-    
-    function closeAuthModal() {
-      document.getElementById('auth-modal').style.display = 'none';
-    }
-    
-    function showAuthForm(formId) {
-      const forms = document.querySelectorAll('.auth-form-content');
-      forms.forEach(form => form.classList.remove('active'));
-      document.getElementById(formId + '-form').classList.add('active');
-      
-      const tabs = document.querySelectorAll('.auth-tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      document.getElementById(formId + '-tab').classList.add('active');
-    }
-
-    function login() {
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-
-        if (email === TEST_USER.email && password === 'senha123') { 
-            const user = { ...TEST_USER, isActive: false, earnings: 0 };
-            const token = btoa(JSON.stringify(user));
-            localStorage.setItem('avz_token', token);
-            currentUser = user;
-            closeAuthModal();
-            updateUI();
-            alert("Modo de Teste: Login realizado com sucesso!");
-        } else {
-            alert("Email ou senha incorretos.");
+            const mapStyle = [ 
+                { "featureType": "all", "elementType": "all", "stylers": [ { "invert_lightness": true }, { "saturation": -100 }, { "lightness": -30 }, { "gamma": 0.5 } ] }, 
+                { "featureType": "water", "elementType": "all", "stylers": [ { "color": "#0a0a0a" } ] }, 
+                { "featureType": "road", "elementType": "geometry.fill", "stylers": [ { "color": "#1f1f1f" } ] }, 
+                { "featureType": "road", "elementType": "geometry.stroke", "stylers": [ { "color": "#d4af37" }, { "weight": 0.5 } ] }, 
+                { "featureType": "transit.station.bus", "elementType": "all", "stylers": [ { "visibility": "off" } ] }, 
+                { "featureType": "poi", "elementType": "all", "stylers": [ { "visibility": "off" } ] }, 
+                { "featureType": "landscape.man_made", "elementType": "geometry", "stylers": [ { "color": "#111111" } ] }, 
+                { "featureType": "landscape.natural", "elementType": "geometry", "stylers": [ { "color": "#111111" } ] }, 
+                { "featureType": "administrative", "elementType": "geometry", "stylers": [ { "color": "#d4af37" } ] } 
+            ];
+            map.setOptions({
+                styles: mapStyle
+            });
+            isDarkStyle = true;
         }
     }
-
-    function register() {
-        const name = document.getElementById('register-name').value;
-        const email = document.getElementById('register-email').value;
-        const password = document.getElementById('register-password').value;
-        
-        if (!name || !email || password.length < 6) {
-            alert('Por favor, preencha todos os campos corretamente (a senha deve ter no mínimo 6 caracteres).');
-            return;
-        }
-
-        const user = { ...TEST_USER, name: name, email: email };
-        const token = btoa(JSON.stringify(user));
-        localStorage.setItem('avz_token', token);
-        currentUser = user;
-        closeAuthModal();
-        updateUI();
-        alert('Modo de Teste: Cadastro realizado localmente. ID de Cliente ' + user.id + ' registrado.');
-    }
     
-    function logout() {
-      localStorage.removeItem('avz_token');
-      localStorage.removeItem('hasCalculated');
-      localStorage.removeItem('investmentAmount');
-      currentUser = null;
-      updateUI();
-      window.scrollTo(0, 0);
-    }
-    
-    function calculateEarnings() {
-      const contributionValue = parseFloat(document.getElementById('contribution-value').value);
-      const usageDays = parseInt(document.getElementById('usage-days').value);
-      
-      if (isNaN(contributionValue) || contributionValue < 100 || isNaN(usageDays) || usageDays < 1 || usageDays > 7) {
-        alert("Por favor, insira valores válidos.");
-        return;
-      }
-      
-      const monthlyReturnRate = 0.03;
-      const totalReturnRate = 0.18;
-      
-      const monthlyReturn = contributionValue * monthlyReturnRate;
-      const totalReturn = contributionValue * totalReturnRate;
-      const returnPercentage = totalReturnRate * 100;
-      
-      localStorage.setItem('investmentAmount', contributionValue);
-      localStorage.setItem('hasCalculated', true);
-      
-      document.getElementById('contribution-display').textContent = `R$ ${contributionValue.toFixed(2)}`;
-      document.getElementById('monthly-return').textContent = `R$ ${monthlyReturn.toFixed(2)}`;
-      document.getElementById('total-return').textContent = `R$ ${totalReturn.toFixed(2)}`;
-      document.getElementById('return-percentage').textContent = `${returnPercentage.toFixed(0)}%`;
-      document.getElementById('progress-bar').style.width = `${returnPercentage.toFixed(0)}%`;
-      document.getElementById('progress-text').textContent = `${returnPercentage.toFixed(0)}%`;
-      
-      document.getElementById('result-box').style.display = 'block';
-      
-      startBonusProjection(totalReturn);
-    }
-    
-    function continueToTerms() {
-      document.getElementById('terms-title').style.display = 'block';
-      document.getElementById('terms-container').style.display = 'block';
-      document.getElementById('divider-2').style.display = 'block';
-      window.scrollTo(0, document.getElementById('terms-title').offsetTop);
-    }
-    
-    function aceitarTermos() {
-      const termsAccepted = document.getElementById('terms-checkbox').checked;
-      
-      if (termsAccepted) {
-        document.getElementById('payment-title').style.display = 'block';
-        document.getElementById('payment-container').style.display = 'block';
-        document.getElementById('divider-3').style.display = 'block';
-        window.scrollTo(0, document.getElementById('payment-title').offsetTop);
-      } else {
-        alert("Você precisa aceitar os termos para continuar.");
-      }
-    }
-    
-    function simulatePayment() {
-      alert("Pagamento simulado com sucesso! Seu GPS Premium foi desbloqueado.");
-      currentUser.isActive = true;
-      localStorage.setItem('avz_token', btoa(JSON.stringify(currentUser)));
-      startEarningsSimulation();
-      updateUI();
-      showDashboard();
-    }
-    
-    function selectPayment(option) {
-      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-      document.querySelector(`.payment-option.${option}`).classList.add('selected');
-      
-      document.getElementById('pix-form').style.display = 'none';
-      document.getElementById('card-form').style.display = 'none';
-      document.getElementById(`${option}-form`).style.display = 'block';
-    }
-    
-    window.onclick = function(event) {
-      const modal = document.getElementById('auth-modal');
-      if (event.target === modal) {
-        closeAuthModal();
-      }
-    }
-    
-    function showDashboard() {
-      if (!currentUser) {
-        alert("Por favor, faça login para acessar o dashboard.");
-        showAuthModal();
-        return;
-      }
-      
-      const sections = document.querySelectorAll('#hero-section, .user-info-section, #calculator-title, #calculator, #divider-1, #terms-title, #terms-container, #divider-2, #payment-title, #payment-container, #divider-3, #gps-section');
-      sections.forEach(s => s.style.display = 'none');
-      
-      document.getElementById('dashboard').style.display = 'block';
-      document.getElementById('dashboard-title').style.display = 'block';
-      window.scrollTo(0, document.getElementById('dashboard-title').offsetTop);
-      
-      document.getElementById('user-status').textContent = currentUser.isActive ? 'Ativo' : 'Inativo';
-      document.getElementById('accumulated-earnings').textContent = `R$ ${currentUser.earnings.toFixed(2)}`;
-    }
-
-    function checkGPSAccess() {
-      if (currentUser && currentUser.isActive) {
-        const sections = document.querySelectorAll('#hero-section, .user-info-section, #calculator-title, #calculator, #divider-1, #terms-title, #terms-container, #divider-2, #payment-title, #payment-container, #divider-3, #dashboard-title, #dashboard');
-        sections.forEach(s => s.style.display = 'none');
-        document.getElementById('gps-section').style.display = 'block';
-        if (typeof google !== 'undefined') {
-          initMap();
-        }
-      } else {
-        alert("O GPS Premium está bloqueado. Por favor, acesse a calculadora e adquira o serviço para desbloqueá-lo.");
-        showDashboard();
-      }
-    }
-
     function calculateAndDisplayRoute() {
-      stopRoute();
-      
       const destination = document.getElementById('destination-input').value;
-
       if (!destination) {
         alert("Por favor, digite um destino.");
         return;
       }
       
-      let origin;
-      if (originPlace && originPlace.geometry) {
-        origin = originPlace.geometry.location;
-      } else {
-        origin = marker.getPosition();
-      }
-
-      let destinationAddress;
-      if (destinationPlace && destinationPlace.geometry) {
-        destinationAddress = destinationPlace.geometry.location;
-      } else {
-        destinationAddress = destination;
-      }
+      const origin = document.getElementById('origin-input').value;
       
       directionsService.route({
-        origin: origin,
-        destination: destinationAddress,
+        origin: origin || marker.getPosition(),
+        destination: destination,
         travelMode: 'DRIVING'
       }, (response, status) => {
         if (status === 'OK') {
@@ -1437,22 +1302,18 @@
           const leg = route.legs[0];
           document.getElementById('distance-display').textContent = leg.distance.text;
           document.getElementById('duration-display').textContent = leg.duration.text;
-          
-          routePath = response.routes[0].overview_path;
-          routeStep = 0;
           document.getElementById('route-controls').style.display = 'flex';
-          document.getElementById('start-route-btn').style.display = 'inline-block';
+          routePath = route.overview_path;
+          routeStep = 0;
         } else {
           window.alert('Falha ao traçar a rota. Status: ' + status);
-          document.getElementById('route-controls').style.display = 'none';
         }
       });
     }
 
     function startRoute() {
-      if (!routePath || routePath.length === 0) {
-        alert("Por favor, trace uma rota primeiro.");
-        return;
+      if (routeSimulationIntervalId) {
+        clearInterval(routeSimulationIntervalId);
       }
       
       document.getElementById('start-route-btn').style.display = 'none';
@@ -1476,6 +1337,27 @@
       document.getElementById('stop-route-btn').style.display = 'none';
       document.getElementById('start-route-btn').style.display = 'inline-block';
     }
+    
+    // Chame esta função ao carregar a página
+    (function() {
+      try {
+        const storedUser = localStorage.getItem('avz_token');
+        if (storedUser) {
+          currentUser = JSON.parse(atob(storedUser));
+          updateUserStatus();
+        } else {
+          updateUserStatus();
+        }
+        if (currentUser && currentUser.isActive) {
+          startEarningsUpdates();
+        }
+      } catch (e) {
+        console.error("Erro ao carregar dados do usuário:", e);
+        localStorage.removeItem('avz_token');
+        currentUser = null;
+        updateUserStatus();
+      }
+    })();
   </script>
   
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7WQiZgCVhr35Zc-hTJAtIT897YhIgUE0&callback=initMap&libraries=maps,marker,places,routes"></script>
@@ -1483,5 +1365,6 @@
   <footer>
     <p>© 2025 AVZ PropTech - Todos os direitos reservados.</p>
   </footer>
+  
 </body>
 </html>
